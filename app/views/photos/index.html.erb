@@ -12,14 +12,14 @@
 <% @photos.each do |photo| %>
   <tr>
     <td><%= photo.album_id %></td>
-    <td><%= photo.image %></td>
-    <td><%= link_to 'Show', photo %></td>
-    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= image_tag(photo.image.thumb.url) if photo.image? %></td>
+    <td><%#= link_to 'Show', photo %></td>
+    <td><%#= link_to 'Edit', edit_album_photo_path(@album_photo) %></td>
+    <td><%#= link_to 'Destroy', photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Photo', new_photo_path %>
+<%= link_to 'New Photo', new_album_photo_path(@album) %>

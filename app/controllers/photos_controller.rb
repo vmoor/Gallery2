@@ -2,7 +2,8 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @album = Album.find(params[:album_id])
+    @photos = @album.photos
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +25,8 @@ class PhotosController < ApplicationController
   # GET /photos/new
   # GET /photos/new.json
   def new
-    @photo = Photo.new
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,11 +42,12 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.json
   def create
-    @photo = Photo.new(params[:photo])
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.build(params[:photo])
 
     respond_to do |format|
       if @photo.save
-        format.html { redirect_to @photo, notice: 'Photo was successfully created.' }
+        format.html { redirect_to album_photos_url(@album), notice: 'Photo was successfully created.' }
         format.json { render json: @photo, status: :created, location: @photo }
       else
         format.html { render action: "new" }
