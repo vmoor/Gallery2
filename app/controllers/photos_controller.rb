@@ -36,7 +36,8 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
-    @photo = Photo.find(params[:id])
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.find(params[:id])
   end
 
   # POST /photos
@@ -59,11 +60,12 @@ class PhotosController < ApplicationController
   # PUT /photos/1
   # PUT /photos/1.json
   def update
-    @photo = Photo.find(params[:id])
+    @album = Album.find(params[:album_id])
+    @photo = @album.photos.find(params[:id])
 
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
-        format.html { redirect_to @photo, notice: 'Photo was successfully updated.' }
+        format.html { redirect_to album_photos_url(@album), notice: 'Photo was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

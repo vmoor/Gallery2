@@ -16,8 +16,9 @@
     <%= f.number_field :album_id %>
   </div>
   <div class="field">
-    <%= f.label :image %><br />
+    <%= image_tag(@photo.image.thumb.url) if @photo.image? %>
     <%= f.file_field :image %>
+
   </div>
   <div class="actions">
     <%= f.submit %>
