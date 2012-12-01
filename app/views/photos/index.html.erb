@@ -10,12 +10,12 @@
   </tr>
 
 <% @photos.each do |photo| %>
-  <tr>
+  <tr data-photo-id=<%= photo.id %>>
     <td><%= photo.album_id %></td>
     <td><%= image_tag(photo.image.thumb.url) if photo.image? %></td>
     <td><%#= link_to 'Show', photo %></td>
     <td><%= link_to 'Edit', edit_album_photo_path(@album, photo) %></td>
-    <td><%= link_to 'Destroy', album_photo_path(@album, photo), method: :delete, data: { confirm: 'Are you sure?' }, "data-photo-destroy-id" => photo.id %></td>
+    <td><%= link_to 'Destroy', album_photo_path(@album, photo, :json), "data-photo-destroy-id" => photo.id %></td>
   </tr>
 <% end %>
 </table>

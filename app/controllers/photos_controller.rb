@@ -83,7 +83,10 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to album_photos_url(@album) }
-      format.json { head :no_content }
+      format.json do
+        render json: { 
+          photo: @photo }.to_json
+      end
     end
   end
 end
