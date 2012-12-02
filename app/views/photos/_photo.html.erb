@@ -1,0 +1,4 @@
+ <div data-photo-id=<%= photo.id %>>
+    <%= image_tag(photo.image.thumb.url) if photo.image? %>
+    <%= link_to 'Destroy', album_photo_path(@album, photo, :json), "data-photo-destroy-id" => photo.id %>
+ </div>

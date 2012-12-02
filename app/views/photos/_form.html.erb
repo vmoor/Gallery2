@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= image_tag(@photo.image.thumb.url) if @photo.image? %>
-    <%= f.file_field :image %>
+    <%= f.file_field :image,  multiple: true, name: "photo[image]" %>
 
   </div>
   <div class="actions">

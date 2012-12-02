@@ -11,7 +11,6 @@ jQuery(function($){
     });
 
 	 function process(data){
-	 	console.log($('tr[data-photo-id=' + data.photo.id + ' ]'));
-	 	$('tr[data-photo-id=' + data.photo.id + ']').remove();
+	 	$('div[data-photo-id=' + data.photo.id + ']').remove();
 	 }
 });

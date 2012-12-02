@@ -1,24 +1,18 @@
 <h1>Listing photos</h1>
 
-<table>
-  <tr>
-    <th>Album</th>
-    <th>Image</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id="photos" >
+  <%= render @photos %>
+</div>
+<div class="clear"></div>
 
-<% @photos.each do |photo| %>
-  <tr data-photo-id=<%= photo.id %>>
-    <td><%= photo.album_id %></td>
-    <td><%= image_tag(photo.image.thumb.url) if photo.image? %></td>
-    <td><%#= link_to 'Show', photo %></td>
-    <td><%= link_to 'Edit', edit_album_photo_path(@album, photo) %></td>
-    <td><%= link_to 'Destroy', album_photo_path(@album, photo, :json), "data-photo-destroy-id" => photo.id %></td>
-  </tr>
+
+<%= form_for @album.photos.build, :url => { :action => "create" } do |f| %>
+  <%#= f.label :photo %>
+  <%= f.file_field :photo, multiple: true, name: "photo[image]" %>
+  <div class="actions">
+    <%#= f.submit %>
+  </div>
 <% end %>
-</table>
 
 <br />
 
