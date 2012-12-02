@@ -10,6 +10,23 @@
   <%= @album.cover %>
 </p>
 
+<div class="row">
+  <div class="span16 fileupload-buttonbar">
+		<div id="photos" >
+		  <%= render @photos %>
+		</div>
+		<div class="clear"></div>
+  </div>
+</div>
+
+
+<%= form_for [@album, @album.photos.build] do |f| %>
+  <%#= f.label :photo %>
+  <%= f.file_field :photo, multiple: true, name: "photo[image]" %>
+  <div class="actions">
+    <%#= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_album_path(@album) %> |
 <%= link_to 'Back', albums_path %>
