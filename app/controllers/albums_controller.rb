@@ -17,7 +17,7 @@ class AlbumsController < ApplicationController
     @photos = @album.photos
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @album }
+      format.json { render json: @photos.map{|photo| photo.to_jq_image }  }
     end
   end
 

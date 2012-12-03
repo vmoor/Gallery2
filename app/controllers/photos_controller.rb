@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
  #   @photo = @album.photos.build
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @photos }
+      format.json { render json: @photos.map{|photo| photo.to_jq_image } }
     end
   end
 
@@ -19,7 +19,7 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @photo }
+      format.json { }
     end
   end
 
@@ -45,7 +45,22 @@ class PhotosController < ApplicationController
   # POST /photos.json
   def create
     @album = Album.find(params[:album_id])
-    @photo = @album.photos.create(params[:photo])
+    @photo = @album.photos.build(params[:photo])
+
+    respond_to do |format|
+      if @photo.save
+        format.html {
+          render :json => [@photo.to_jq_image].to_json,
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json {
+          render :json => [@photo.to_jq_image].to_json
+        }
+      else
+        render :json => [{:error => "custom_failure"}], :status => 304
+      end
+    end
   end
 
   # PUT /photos/1
@@ -72,12 +87,6 @@ class PhotosController < ApplicationController
     @photo = @album.photos.find(params[:id])
     @photo.destroy
 
-    respond_to do |format|
-      format.html { redirect_to album_photos_url(@album) }
-      format.json do
-        render json: { 
-          photo: @photo }.to_json
-      end
-    end
+    render :json => true
   end
 end

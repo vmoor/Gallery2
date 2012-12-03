@@ -1,9 +1,9 @@
 Gallery2::Application.routes.draw do
- 
+
 
   resources :albums do
-    resources :photos
-  end 
+    resources :photos, :only => [:index, :create, :destroy]
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
