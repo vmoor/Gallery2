@@ -67,7 +67,7 @@
             </div>
             <div class="span3">
                 <!-- The global progress bar -->
-                <div class="progress progress-success progress-striped active fade">
+                <div id="progress" class="progress progress-success progress-striped active">
                     <div class="bar" style="width:0%;"></div>
                 </div>
                 <!-- The loading indicator is shown during image processing -->
@@ -173,6 +173,13 @@
             sequentialUploads: true,
             limitConcurrentUploads: 1,
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
 
         });
         //
