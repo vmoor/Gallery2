@@ -2,13 +2,13 @@
       <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
        <div class="container-fluid">
         <div class="row-fluid">
-          <div class="span5 offset2">
+          <div class="span6 offset1">
             <h2>Upload file</h2>
           </div>
         </div>
 
         <div class="row-fluid fileupload-buttonbar">
-            <div class="span5 offset2">
+            <div class="span6 offset1">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
@@ -39,12 +39,10 @@
             </div>
         </div>
 
-        <br>
         <!-- The table listing the files available for upload/download -->
         <div class="row-fluid">
-          <div class="span8 offset2">
-            <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-            </table>
+          <div class="span10 offset1">
+            <div class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></div>
           </div>
         </div>
       </div>
@@ -65,32 +63,38 @@
 <!-- The template to display files available for upload -->
 <script id="template-upload" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
-  <tr class="template-upload fade">
-    <td class="preview"><span class="fade"></span></td>
-    <td class="name"><span>{%=file.name%}</span></td>
-    <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-    {% if (file.error) { %}
-    <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-    {% } else if (o.files.valid && !i) { %}
-    <td>
-      <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
-    </td>
-    <td class="start">{% if (!o.options.autoUpload) { %}
-      <button class="btn btn-primary">
-        <i class="icon-upload icon-white"></i>
-        <span>{%=locale.fileupload.start%}</span>
-      </button>
-      {% } %}</td>
-    {% } else { %}
-    <td colspan="2"></td>
-    {% } %}
-    <td class="cancel">{% if (!i) { %}
-      <button class="btn btn-warning">
-        <i class="icon-ban-circle icon-white"></i>
-        <span>{%=locale.fileupload.cancel%}</span>
-      </button>
-      {% } %}</td>
-  </tr>
+  <div class="template-upload fade">
+    <li class="span3">
+      <div class="thumbnail">
+        <div class="preview" style="text-align: center;"><span class="fade"></span></div>
+        <div class="name"><span>{%=file.name%}</span></div>
+        <div class="size"><span>{%=o.formatFileSize(file.size)%}</span></div>
+
+        {% if (file.error) { %}
+        <div class="error" ><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</div>
+        {% } else if (o.files.valid && !i) { %}
+        <div>
+          <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
+        </div>
+        <div class="start">{% if (!o.options.autoUpload) { %}
+          <button class="btn btn-primary">
+            <i class="icon-upload icon-white"></i>
+            <span>{%=locale.fileupload.start%}</span>
+          </button>
+          {% } %}</div>
+        {% } else { %}
+        <div></div>
+        {% } %}
+        <div class="cancel">{% if (!i) { %}
+          <button class="btn btn-warning">
+            <i class="icon-ban-circle icon-white"></i>
+            <span>{%=locale.fileupload.cancel%}</span>
+          </button>
+          {% } %}
+        </div>
+      </div>
+    </li>
+  </div>
   {% } %}
 </script>
 <!-- The template to display files available for download -->
@@ -127,70 +131,7 @@
 
 
 <!-- The Templates and Load Image plugins are included for the FileUpload user interface -->
-<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
+<!--<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
 <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-
-<script type="text/javascript" charset="utf-8">
-    $(function () {
-        // Initialize the jQuery File Upload widget:
-        $('#fileupload').fileupload({
-            sequentialUploads: true,
-            limitConcurrentUploads: 1,
-            previewMaxWidth: 150,
-            previewMaxHeight: 150,
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-            progressall: function (e, data) {
-                var progress = parseInt(data.loaded / data.total * 100, 10);
-                console.log(data.context.find('.bar').css('width', '25%'));
-                $('#progress .bar').css(
-                    'width',
-                    progress + '%'
-                );
-                var bitrate = parseInt(data.bitrate / 1024);
-                var bitrate_s = "";
-                if (bitrate > 1024) {
-                  bitrate = parseFloat(bitrate / 1024).toFixed(2);
-                  bitrate_s = bitrate + " MB/s";
-                } else {
-                  bitrate_s = bitrate + " KB/s";
-                }
-                console.log(bitrate_s);
-            },
-
-            fileuploadprogress: function (e, data) {
-            // Log the current bitrate for this upload:
-              console.log(data.total);
-            },
-
-            process: [
-              {
-                  action: 'load'
-//                  maxFileSize: 20000000 // 20MB
-              },
-              {
-                  action: 'resize',
-                  maxWidth: 1920,
-                  maxHeight: 1200
-              },
-              {action: 'save'}
-            ]
-
-            
-        });
-        //
-        // Load existing files:
-        $.getJSON($('#fileupload').prop('action'), function (files) {
-          var fu = $('#fileupload').data('fileupload'),
-            template;
-          fu._adjustMaxNumberOfFiles(-files.length);
-          template = fu._renderDownload(files)
-            .appendTo($('#fileupload .files'));
-          // Force reflow:
-          fu._reflow = fu._transition && template.length &&
-            template[0].offsetWidth;
-          template.addClass('in');
-          $('#loading').remove();
-        });
-
-    });
-</script>
+    
+-->

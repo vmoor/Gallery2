@@ -1,0 +1,41 @@
+// Place all the styles related to the Photos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.thumbnail .preview {
+  text-align: center;
+}
+
+.thumbnail a > img {
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thumbnail .preview > img {
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.files .span3 {
+  width: 250px;
+}
+
+.files .span3 .thumbnail {
+  height: 250px;
+  background-color: #7D7D7D;
+}
+
+.progress {
+  height: 8px;
+  margin-top: 10px;
+}
+._progress-success.progress-striped .bar {
+  background-color: #7D7D7D;
+}
+
+img {
+  max-width: none;
+}
+

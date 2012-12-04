@@ -1,84 +1,63 @@
-/*jQuery(function($){
-	 $('a[data-photo-destroy-id]').live('click', function(){
-		var a = $(this);
-      $.ajax({
-        data: {"_method":"delete"},
-        type: 'post',
-        url: a.attr("href"),
-        success: process
-      });
-      return false;
-    });
+$(function () {
+        // Initialize the jQuery File Upload widget:
+        $('#fileupload').fileupload({
+  //          autoUpload: true,
+            sequentialUploads: true,
+            limitConcurrentUploads: 1,
+            previewMaxWidth: 200,
+            previewMaxHeight: 150,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                console.log(data.context.find('.bar').css('width', '25%'));
+                $('#progress .bar').css(
+                    'width',
+                    progress + '%'
+                );
+                var bitrate = parseInt(data.bitrate / 1024);
+                var bitrate_s = "";
+                if (bitrate > 1024) {
+                  bitrate = parseFloat(bitrate / 1024).toFixed(2);
+                  bitrate_s = bitrate + " MiB/s";
+                } else {
+                  bitrate_s = bitrate + " KiB/s";
+                }
+                console.log(bitrate_s);
+            },
 
-	 function process(data){
-	 	$('div[data-photo-id=' + data.photo.id + ']').remove();
-	 }
+            fileuploadprogress: function (e, data) {
+            // Log the current bitrate for this upload:
+              console.log(data.total);
+            },
 
-
-  $('#fileupload').fileupload({
-    //  dataType: "script",
-     // sequentialUploads: true,
-     // limitConcurrentUploads: 1,
-     // autoUpload: true,
-      uploadTemplateId: null,
-      downloadTemplateId: null,
-      uploadTemplate: function (o) {
-          var rows = $();
-          $.each(o.files, function (index, file) {
-              var row = $('<tr class="template-upload fade">' +
-                  '<td class="preview"><span class="fade"></span></td>' +
-                  '<td class="name"></td>' +
-                  '<td class="size"></td>' +
-                  (file.error ? '<td class="error" colspan="2"></td>' :
-                          '<td><div class="progress">' +
-                              '<div class="bar" style="width:0%;"></div></div></td>' +
-                              '<td class="start"><button>Start</button></td>'
-                  ) + '<td class="cancel"><button>Cancel</button></td></tr>');
-              row.find('.name').text(file.name);
-              row.find('.size').text(o.formatFileSize(file.size));
-              if (file.error) {
-                  row.find('.error').text(
-                      locale.fileupload.errors[file.error] || file.error
-                  );
-              }
-              rows = rows.add(row);
-          });
-          return rows;
-      },
-      downloadTemplate: function (o) {
-          var rows = $();
-          $.each(o.files, function (index, file) {
-              var row = $('<tr class="template-download fade">' +
-                  (file.error ? '<td></td><td class="name"></td>' +
-                      '<td class="size"></td><td class="error" colspan="2"></td>' :
-                          '<td class="preview"></td>' +
-                              '<td class="name"><a></a></td>' +
-                              '<td class="size"></td><td colspan="2"></td>'
-                  ) + '<td class="delete"><button>Delete</button> ' +
-                      '<input type="checkbox" name="delete" value="1"></td></tr>');
-              row.find('.size').text(o.formatFileSize(file.size));
-              if (file.error) {
-                  row.find('.name').text(file.name);
-                  row.find('.error').text(
-                      locale.fileupload.errors[file.error] || file.error
-                  );
-              } else {
-                  row.find('.name a').text(file.name);
-                  if (file.thumbnail_url) {
-                      row.find('.preview').append('<a><img></a>')
-                          .find('img').prop('src', file.thumbnail_url);
-                      row.find('a').prop('rel', 'gallery');
-                  }
-                  row.find('a').prop('href', file.url);
-                  row.find('.delete button')
-                      .attr('data-type', file.delete_type)
-                      .attr('data-url', file.delete_url);
-              }
-              rows = rows.add(row);
-          });
-          return rows;
-      }
-  });
+            process: [
+              {
+                  action: 'load',
+                  fileTypes: /^image\/(gif|jpeg|png)$/
+//                  maxFileSize: 20000000 // 20MB
+              },
+              {
+                  action: 'resize',
+                  maxWidth: 1920,
+                  maxHeight: 1200
+              },
+              {action: 'save'}
+            ]            
+        });
+        //
+        // Load existing files:
+        $.getJSON($('#fileupload').prop('action'), function (files) {
+          var fu = $('#fileupload').data('fileupload'),
+            template;
+          fu._adjustMaxNumberOfFiles(-files.length);
+          template = fu._renderDownload(files)
+            .appendTo($('#fileupload .files'));
+          // Force reflow:
+          fu._reflow = fu._transition && template.length &&
+            template[0].offsetWidth;
+          template.addClass('in');
+          $('#loading').remove();
+        });
 
 });
-*/
+
