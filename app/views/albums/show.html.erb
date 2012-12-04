@@ -1,39 +1,3 @@
-<!--<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Title:</b>
-  <%= @album.title %>
-</p>
-
-<p>
-  <b>Cover:</b>
-  <%= @album.cover %>
-</p>
-
-<div class="row-fluid">
-	<div id="photos" class="span10 well">
-    <table>
-      <tr>
-	     <%= render @photos %>
-     </tr>
-    </table>
-	</div>
-</div>
-
-<div class="clear"></div>
-
-<%= form_for [@album, @album.photos.build] do |f| %>
-  <%#= f.label :photo %>
-  <%= f.file_field :photo, multiple: true, name: "photo[image]" %>
-  <div class="actions">
-    <%#= f.submit %>
-  </div>
-<% end %>
-
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
--->
-
   <%= form_for [@album, @album.photos.build], :html => { :multipart => true, :id => "fileupload"  } do |f| %>
       <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
        <div class="container-fluid">
@@ -172,15 +136,46 @@
         $('#fileupload').fileupload({
             sequentialUploads: true,
             limitConcurrentUploads: 1,
+            previewMaxWidth: 150,
+            previewMaxHeight: 150,
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
+                console.log(data.context.find('.bar').css('width', '25%'));
                 $('#progress .bar').css(
                     'width',
                     progress + '%'
                 );
-            }
+                var bitrate = parseInt(data.bitrate / 1024);
+                var bitrate_s = "";
+                if (bitrate > 1024) {
+                  bitrate = parseFloat(bitrate / 1024).toFixed(2);
+                  bitrate_s = bitrate + " MB/s";
+                } else {
+                  bitrate_s = bitrate + " KB/s";
+                }
+                console.log(bitrate_s);
+            },
 
+            fileuploadprogress: function (e, data) {
+            // Log the current bitrate for this upload:
+              console.log(data.total);
+            },
+
+            process: [
+              {
+                  action: 'load'
+//                  maxFileSize: 20000000 // 20MB
+              },
+              {
+                  action: 'resize',
+                  maxWidth: 1920,
+                  maxHeight: 1200
+              },
+              {action: 'save'}
+            ]
+
+            
         });
         //
         // Load existing files:
