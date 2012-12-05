@@ -1,6 +1,3 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-require 'rvm/capistrano'
-
 set :application, "Gallery2"
 set :repository,  "git://github.com/vmoor/Gallery2.git"
 
