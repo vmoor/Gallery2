@@ -31,6 +31,7 @@ gem 'bitmask_attributes'
 
 group :development do
   gem 'capistrano'
+  gem 'mysql2'
 end
 
 
