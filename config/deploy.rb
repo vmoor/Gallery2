@@ -1,3 +1,4 @@
+require 'bundler/capistrano'
 set :application, "Gallery2"
 set :repository,  "git://github.com/vmoor/Gallery2.git"
 
