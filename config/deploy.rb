@@ -1,5 +1,7 @@
 
 set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"")
+$$LOAD_PATH.unshift File.expand_path('./lib', ENV['rvm_path'])
+require 'rvm/capistrano'
 require "bundler/capistrano"
 set :application, "Gallery2"
 set :repository,  "git://github.com/vmoor/Gallery2.git"
