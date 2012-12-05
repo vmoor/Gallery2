@@ -1,3 +1,5 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require 'rvm/capistrano'
 require "bundler/capistrano"
 set :application, "Gallery2"
 set :repository,  "git://github.com/vmoor/Gallery2.git"
@@ -10,8 +12,8 @@ role :app, "ec2-50-16-151-52.compute-1.amazonaws.com"                          #
 role :db,  "ec2-50-16-151-52.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
-set :user, "deployer"
-set :deploy_to, "/home/deployer/apps/#{application}"
+set :user, "ubuntu"
+set :deploy_to, "/home/ubuntu/apps/#{application}"
 
 set :use_sudo, false
 set :keep_releases, 5
