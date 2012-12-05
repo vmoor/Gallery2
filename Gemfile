@@ -28,7 +28,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'devise'
 gem 'bitmask_attributes'
-gem "rvm/capistrano"
+gem 'rvm/capistrano'
 
 group :development do
   gem 'capistrano'
