@@ -26,6 +26,7 @@ gem 'jquery-rails'
 
 gem 'carrierwave'
 gem 'rmagick'
+gem 'rake'
 gem 'devise'
 gem 'bitmask_attributes'
 gem 'rvm-capistrano'
