@@ -1,7 +1,8 @@
+require "bundler/capistrano"
 load 'deploy/assets'
 
 set :rvm_ruby_string, '1.9.3p327'
-set :rvm_type, :user
+set :rvm_type, :system
 
 #require "rvm/capistrano"  # Load RVM's capistrano plugin.
 set :application, "Gallery2"
@@ -10,13 +11,13 @@ set :repository,  "git://github.com/vmoor/Gallery2.git"
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "ec2-23-21-32-243.compute-1.amazonaws.com"                          # Your HTTP server, Apache/etc
-role :app, "ec2-23-21-32-243.compute-1.amazonaws.com"                          # This may be the same as your `Web` server
-role :db,  "ec2-23-21-32-243.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
+role :web, "ec2-204-236-240-10.compute-1.amazonaws.com"                          # Your HTTP server, Apache/etc
+role :app, "ec2-204-236-240-10.compute-1.amazonaws.com"                          # This may be the same as your `Web` server
+role :db,  "ec2-204-236-240-10.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
-set :user, "deploy"
-set :deploy_to, "/home/deploy/webapps/#{application}"
+set :user, "ubuntu"
+set :deploy_to, "/home/ubuntu/webapps/#{application}"
 
 set :use_sudo, false
 set :keep_releases, 5
@@ -38,10 +39,12 @@ namespace :deploy do
   end
 end
 
-desc "install the necessary prerequisites"
-task :bundle_install, :roles => :app do
-  run "cd #{release_path} && bundle install"
+after "deploy:update_code", "bundle:install"
+ 
+namespace :bundle do
+  desc "Bundle install"
+  task :install, :roles => :app do
+    run "cd #{current_release} && #{sudo} bundle install"
+  end
 end
-
-after "deploy:update_code", :bundle_install
 
