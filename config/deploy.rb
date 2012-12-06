@@ -1,5 +1,5 @@
 require "bundler/capistrano"
-load 'deploy/assets'
+#load 'deploy/assets'
 
 set :rvm_ruby_string, '1.9.3p327'
 set :rvm_type, :system
