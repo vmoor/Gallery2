@@ -5,7 +5,7 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
+  gem 'sqlite3'
 
 
 # Gems used only for assets and not required
@@ -29,12 +29,8 @@ gem 'rmagick'
 gem 'rake'
 gem 'devise'
 gem 'bitmask_attributes'
-gem 'rvm-capistrano'
-gem 'mysql2'
-group :development do
-  gem 'capistrano'
-  gem 'sqlite3'
-end
+#gem 'rvm-capistrano'
+
 
 
 # To use ActiveModel has_secure_password
