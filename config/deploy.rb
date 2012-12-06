@@ -1,6 +1,9 @@
+
+
 set :rvm_type, :system    # :user is the default
 set :rvm_ruby_string, ENV['GEM_HOME'].gsub(/.*\//,"") # Read from local system
 
+require "capistrano"
 #require "rvm/capistrano"  # Load RVM's capistrano plugin.
 set :application, "Gallery2"
 set :repository,  "git://github.com/vmoor/Gallery2.git"
