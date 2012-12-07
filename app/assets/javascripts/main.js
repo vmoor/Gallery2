@@ -3,7 +3,7 @@ $(function () {
         $('#fileupload').fileupload({
   //          autoUpload: true,
             sequentialUploads: true,
-            maxChunkSize: 500000,
+ //           maxChunkSize: 500000,
             limitConcurrentUploads: 1,
             previewMaxWidth: 200,
             previewMaxHeight: 150,
