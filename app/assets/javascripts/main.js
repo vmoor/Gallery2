@@ -3,6 +3,7 @@ $(function () {
         $('#fileupload').fileupload({
   //          autoUpload: true,
             sequentialUploads: true,
+            maxChunkSize: 1000000,
             limitConcurrentUploads: 1,
             previewMaxWidth: 200,
             previewMaxHeight: 150,
@@ -108,7 +109,7 @@ $(function () {
           }     
         });
         //
-/*        // Load existing files:
+        // Load existing files:
         $.getJSON($('#fileupload').prop('action'), function (files) {
           var fu = $('#fileupload').data('fileupload'),
             template;
@@ -121,6 +122,6 @@ $(function () {
           template.addClass('in');
           $('#loading').remove();
         });
-*/
+
 });
 
