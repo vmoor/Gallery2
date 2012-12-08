@@ -1,8 +1,25 @@
 // Place all the styles related to the Photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.thumbnail .preview {
+.thumbnail .buttons {
+  display: inline-block;
+  height: 30px;
+}
+.buttons .start {
+  width: 50%;
+  float: left;
+  text-align: right;
+}
+
+.buttons .cancel {
+  width: 50%;
+  float: left;
+  text-align: left;
+}
+
+.thumbnail .bild {
   text-align: center;
+  height: 200px;
 }
 
 .thumbnail a > img {
@@ -11,25 +28,42 @@
   margin-left: auto;
   margin-right: auto;
 }
+.bild .preview {
+  height: 156px;
+  width: 210px;
+  margin:0;
+  padding:0;
+  vertical-align:middle;
+  text-align: center;
+  display: table-cell;
+  background-color: #000;
+}
 
-.thumbnail .preview > img {
+.bild .preview > img {
   display: block;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 .files .span3 {
-  width: 250px;
+  width: 210px;
+  text-align: center;
 }
 
 .files .span3 .thumbnail {
-  height: 250px;
+  height: 230px;
   background-color: #7D7D7D;
 }
 
-.progress {
+.bild .progress {
   height: 8px;
-  margin-top: 10px;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.progress .bar{
+    text-align: center;
 }
 ._progress-success.progress-striped .bar {
   background-color: #7D7D7D;

@@ -7,11 +7,12 @@ $(function () {
             limitConcurrentUploads: 1,
             previewMaxWidth: 200,
             previewMaxHeight: 150,
+            previewAsCanvas: false,
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             progressall: function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
-                console.log(data.context.find('.bar').css('width', '25%'));
-                $('#progress .bar').css(
+
+                $('#progress-all .bar').css(
                     'width',
                     progress + '%'
                 );
@@ -34,8 +35,8 @@ $(function () {
             process: [
               {
                   action: 'load',
-                  fileTypes: /^image\/(gif|jpeg|png)$/
-//                  maxFileSize: 20000000 // 20MB
+                  fileTypes: /^image\/(gif|jpeg|png)$/,
+                  maxFileSize: 15000000 // MB
               },
               {
                   action: 'resize',
@@ -52,17 +53,18 @@ $(function () {
                 $.each(o.files, function (index, file) {
                     var row = $('<div class="template-upload fade">' +
                         '<li class="span3"><div class="thumbnail">' + 
-                        '<div class="preview" style="text-align: center"><span class="fade"></span></div>' +
+                        '<div class="bild"><div class="preview"><span class="fade"></span></div>' +
+                        '<div class="progress progress-striped active">' +
+                        '<div class="bar" style="width:0%;"></div></div>' +
                         '<div class="name"><span></span></div>' +
-                        '<div class="size"><span></span></div>' +
                         (file.error ? '<div class="error label label-important"></div>' :
-                                '<div><div class="progress progress-striped active">' +
-                                    '<div class="bar" style="width:0%;"></div></div></div>' +
-                                    '<div class="start">' +
-                                    (!o.options.autoUpload ? '<button> <i class="icon-upload icon-white"></i><span>'+ locale.fileupload.start +'</span></button>' : '<div></div>' ) + '</div>'
-                        ) + '<div class="cancel"><button><i class="icon-ban-circle icon-white"></i>'+ locale.fileupload.cancel +'</button></div></div></li></div>');
+                                '</div><div class="buttons"><div class="start">' +
+                                    (!o.options.autoUpload ? '<button> <i class="icon-upload icon-white"></i><span>'+ 
+                                      locale.fileupload.start +'</span></button>' : '<div></div>' ) + '</div>'
+                        ) + '<div class="cancel"><button><i class="icon-ban-circle icon-white"></i>'+ 
+                        locale.fileupload.cancel +'</button></div></div></div></li></div>');
                     row.find('.name').text(file.name);
-                    row.find('.size').text(o.formatFileSize(file.size));
+//                    row.find('.size').text(o.formatFileSize(file.size));
                     if (file.error) {
                         row.find('.error').text(
                             locale.fileupload.errors[file.error] || file.error
@@ -83,7 +85,7 @@ $(function () {
                                 '<div class="name"><a></a></div>' +
                                 '<div class="size"></div><div colspan="2"></div>'
                     ) + '<div class="delete"><button><i class="icon-trash icon-white"></i>'+
-                    '<span>' + locale.fileupload.destroy + '</span></button> ' +
+                    '<span>' + locale.fileupload.destroy + '</span></button><br /> ' +
                         '<input type="checkbox" name="delete" value="1"></div></div></li></div>');
                 row.find('.size').text(o.formatFileSize(file.size));
                 if (file.error) {
