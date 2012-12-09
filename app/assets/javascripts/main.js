@@ -79,9 +79,9 @@ $(function () {
             var rows = $();
             $.each(o.files, function (index, file) {
                 var row = $('<div class="template-download fade">' +
-                              '<li class="span3">' +
-                                '<div class="thumbnail">' +
-                                  '<div class="bild">' + 
+                              '<li class="span3" style="height:200px;">' +
+                                '<div class="thumbnail" style="height:200px;">' +
+                                  '<div class="bild" style="height:180px;">' + 
                                     (file.error ? '<div></div><div class="name"></div>' +
                                         '<div class="size"></div><div class="error label label-important"></div>' :
                                       '<div class="preview"></div>' +
