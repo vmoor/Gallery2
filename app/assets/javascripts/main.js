@@ -1,7 +1,7 @@
 $(function () {
         // Initialize the jQuery File Upload widget:
         $('#fileupload').fileupload({
-  //          autoUpload: true,
+            autoUpload: true,
             sequentialUploads: true,
  //           maxChunkSize: 500000,
             limitConcurrentUploads: 1,
@@ -57,12 +57,13 @@ $(function () {
                         '<div class="progress progress-striped active">' +
                         '<div class="bar" style="width:0%;"></div></div>' +
                         '<div class="name"><span></span></div>' +
-                        (file.error ? '<div class="error label label-important"></div>' :
-                                '</div><div class="buttons"><div class="start">' +
-                                    (!o.options.autoUpload ? '<button> <i class="icon-upload icon-white"></i><span>'+ 
-                                      locale.fileupload.start +'</span></button>' : '<div></div>' ) + '</div>'
-                        ) + '<div class="cancel"><button><i class="icon-ban-circle icon-white"></i>'+ 
-                        locale.fileupload.cancel +'</button></div></div></div></li></div>');
+ //                       (file.error ? '<div class="error label label-important"></div>' :
+ //                               '</div><div class="buttons"><div class="start">' +
+ //                                   (!o.options.autoUpload ? '<button> <i class="icon-upload icon-white"></i><span>'+ 
+ //                                     locale.fileupload.start +'</span></button>' : '<div></div>' ) + '</div>'
+ //                       ) + '<div class="cancel"><button><i class="icon-ban-circle icon-white"></i>'+ 
+ //                       locale.fileupload.cancel +'</button></div>
+                          '</div></div></li></div>');
                     row.find('.name').text(file.name);
 //                    row.find('.size').text(o.formatFileSize(file.size));
                     if (file.error) {
@@ -78,23 +79,35 @@ $(function () {
             var rows = $();
             $.each(o.files, function (index, file) {
                 var row = $('<div class="template-download fade">' +
-                  '<li class="span3"><div class="thumbnail">' + 
-                    (file.error ? '<div></div><div class="name"></div>' +
-                        '<div class="size"></div><div class="error label label-important"></div>' :
-                            '<div class="preview"></div>' +
-                                '<div class="name"><a></a></div>' +
-                                '<div class="size"></div><div colspan="2"></div>'
-                    ) + '<div class="delete"><button><i class="icon-trash icon-white"></i>'+
-                    '<span>' + locale.fileupload.destroy + '</span></button><br /> ' +
-                        '<input type="checkbox" name="delete" value="1"></div></div></li></div>');
-                row.find('.size').text(o.formatFileSize(file.size));
+                              '<li class="span3">' +
+                                '<div class="thumbnail">' +
+                                  '<div class="bild">' + 
+                                    (file.error ? '<div></div><div class="name"></div>' +
+                                        '<div class="size"></div><div class="error label label-important"></div>' :
+                                      '<div class="preview"></div>' +
+                                      '<div class="name"><a></a></div>' +
+                                  '</div>'
+                                    ) + 
+            //                    '<div class="downl-buttons"> +
+                                  '<div class="delete">' +
+                                  '<button class="hide">' +
+//                                  '<i class="icon-trash icon-white"></i>'+
+            //                    '<span>' + locale.fileupload.destroy + '</span>'+
+                                  '</button>' +//<br /> ' +
+                                    '<input type="checkbox" name="delete" value="1">' +
+                                  '</div>' +
+                                '</div>' +
+                              '</li>' +
+                            '</div>');
+  //              row.find('.size').text(o.formatFileSize(file.size));
                 if (file.error) {
                     row.find('.name').text(file.name);
                     row.find('.error').text(
                         locale.fileupload.errors[file.error] || file.error
                     );
                 } else {
-                    row.find('.name a').text(file.name);
+ //                   row.find('.name a').text(file.name); name als link
+                    row.find('.name').text(file.name);
                     if (file.thumbnail_url) {
                         row.find('.preview').append('<a><img></a>')
                             .find('img').prop('src', file.thumbnail_url);

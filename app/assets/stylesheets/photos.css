@@ -1,7 +1,7 @@
 // Place all the styles related to the Photos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.thumbnail .buttons {
+/*.thumbnail .buttons {
   display: inline-block;
   height: 30px;
 }
@@ -16,7 +16,7 @@
   float: left;
   text-align: left;
 }
-
+*/
 .thumbnail .bild {
   text-align: center;
   height: 200px;
@@ -28,6 +28,11 @@
   margin-left: auto;
   margin-right: auto;
 }
+.thumbnail .checkbox {
+  margin:0;
+  padding-bottom: 15px;
+  text-align: center;
+}
 .bild .preview {
   height: 156px;
   width: 210px;
@@ -37,6 +42,12 @@
   text-align: center;
   display: table-cell;
   background-color: #000;
+}
+
+.bild .name {
+  width:194px; 
+  height: 20px;
+  overflow:hidden;
 }
 
 .bild .preview > img {
@@ -51,11 +62,11 @@
 }
 
 .files .span3 .thumbnail {
-  height: 230px;
+  height: 190px;
   background-color: #7D7D7D;
 }
 
-.bild .progress {
+.progress {
   height: 8px;
   text-align: center;
   padding: 0;
