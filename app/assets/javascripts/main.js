@@ -52,18 +52,18 @@ $(function () {
                 var rows = $();
                 $.each(o.files, function (index, file) {
                     var row = $('<div class="template-upload fade">' +
-                        '<li class="span3"><div class="thumbnail">' + 
-                        '<div class="bild"><div class="preview"><span class="fade"></span></div>' +
+                        '<div class="span3" style="height:200px;"><div class="thumbnail" style="height:200px;">' +
+                        '<div class="bild" style="height:180px;"><div class="preview"><span class="fade"></span></div>' +
                         '<div class="progress progress-striped active">' +
                         '<div class="bar" style="width:0%;"></div></div>' +
                         '<div class="name"><span></span></div>' +
  //                       (file.error ? '<div class="error label label-important"></div>' :
  //                               '</div><div class="buttons"><div class="start">' +
- //                                   (!o.options.autoUpload ? '<button> <i class="icon-upload icon-white"></i><span>'+ 
+ //                                   (!o.options.autoUpload ? '<button> <i class="icon-upload icon-white"></i><span>'+
  //                                     locale.fileupload.start +'</span></button>' : '<div></div>' ) + '</div>'
- //                       ) + '<div class="cancel"><button><i class="icon-ban-circle icon-white"></i>'+ 
+ //                       ) + '<div class="cancel"><button><i class="icon-ban-circle icon-white"></i>'+
  //                       locale.fileupload.cancel +'</button></div>
-                          '</div></div></li></div>');
+                          '</div></div></div></div>');
                     row.find('.name').text(file.name);
 //                    row.find('.size').text(o.formatFileSize(file.size));
                     if (file.error) {
@@ -74,20 +74,20 @@ $(function () {
                     rows = rows.add(row);
                 });
                 return rows;
-            },     
+            },
             downloadTemplate: function (o) {
             var rows = $();
             $.each(o.files, function (index, file) {
                 var row = $('<div class="template-download fade">' +
                               '<li class="span3" style="height:200px;">' +
                                 '<div class="thumbnail" style="height:200px;">' +
-                                  '<div class="bild" style="height:180px;">' + 
+                                  '<div class="bild" style="height:180px;">' +
                                     (file.error ? '<div></div><div class="name"></div>' +
                                         '<div class="size"></div><div class="error label label-important"></div>' :
                                       '<div class="preview"></div>' +
                                       '<div class="name"><a></a></div>' +
                                   '</div>'
-                                    ) + 
+                                    ) +
             //                    '<div class="downl-buttons"> +
                                   '<div class="delete">' +
                                   '<button class="hide">' +
@@ -121,7 +121,7 @@ $(function () {
                 rows = rows.add(row);
             });
             return rows;
-          }     
+          }
         });
         //
         // Load existing files:
