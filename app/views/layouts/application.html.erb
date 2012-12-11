@@ -7,6 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+      <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="/">Gallery2</a>
+            <% if user_signed_in? %>
+              <div class="nav-collapse">
+                <ul class="nav pull-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged as: <%= current_user.email %> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li> <a href="/"><i class="icon-home"></i> Home </a> </li>
+                       <li><a href="<%#= user_path(current_user) %>"><i class="icon-user"></i> Profile</a></li>
+                       <li class="divider"></li>
+                      <li><a href="<%= destroy_user_session_path %>" data-method='delete'><i class="icon-off"></i> Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
 <!--<div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">
