@@ -3,6 +3,7 @@ class CreateAlbums < ActiveRecord::Migration
     create_table :albums do |t|
       t.string :title
       t.string :cover
+      t.integer :customer_id
 
       t.timestamps
     end

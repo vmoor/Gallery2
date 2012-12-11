@@ -1,5 +1,8 @@
 Gallery2::Application.routes.draw do
 
+  devise_for :customers, :path => "customer", 
+                         :path_names => { :sign_in => 'login',
+                                          :sign_out => 'logout'}                                                                  
 
   devise_for :users, :path => "/user", 
                       :path_names => { :sign_in => 'login',
@@ -10,9 +13,13 @@ Gallery2::Application.routes.draw do
                                        :registration => 'register', 
                                        :sign_up => 'signup' }
 
+resources :customers
+
+resources :users do
   resources :albums do
     resources :photos, :only => [:index, :create, :destroy]
   end
+end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -63,7 +70,7 @@ Gallery2::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-root :to => 'albums#index'
+root :to => 'users#index'
 
   # See how all your routes lay out with "rake routes"
 

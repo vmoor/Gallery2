@@ -14,10 +14,10 @@
   <tr>
     <td><%= album.title %></td>
     <td><%= album.cover %></td>
-    <td><%= link_to 'Photos', album_photos_path(album) %></td>
-    <td><%= link_to 'Show', album, :class => 'btn btn-mini btn-primary' %></td>
-    <td><%= link_to 'Edit', edit_album_path(album) %></td>
-    <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Photos', user_album_photos_path(@user, album) %></td>
+    <td><%= link_to 'Show', User_album(@user), :class => 'btn btn-mini btn-primary' %></td>
+    <td><%= link_to 'Edit', edit_user_album_path(@user, album) %></td>
+    <td><%= link_to 'Destroy', user_album(@user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

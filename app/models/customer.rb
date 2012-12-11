@@ -1,6 +1,6 @@
-class User < ActiveRecord::Base
-
-  has_many :customers, dependent: :destroy
+class Customer < ActiveRecord::Base
+  has_many :albums, dependent: :destroy
+  belongs_to :user
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
-  validates :email, presence: true, :uniqueness => true
+  attr_accessible :name, :user_id
+
+  validates :title, presence: true, :uniqueness => true
 end
