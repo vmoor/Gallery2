@@ -65,5 +65,5 @@ Gallery2::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.default_url_options = { :host => 'ec2-54-242-35-173.compute-1.amazonaws.com' }
-end
+  
 end
