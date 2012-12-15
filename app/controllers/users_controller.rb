@@ -1,14 +1,6 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
+  before_filter :is_user_owner
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
-  end
 
   # GET /users/1
   # GET /users/1.json
@@ -51,6 +43,12 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
+    end
+  end
+
+  def is_user_owner
+    if current_user.id != params[:id].to_i
+      redirect_to current_user
     end
   end
 end

@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_filter :is_user_owner
   # GET /customers
   # GET /customers.json
   def index
@@ -78,6 +79,12 @@ class CustomersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to customers_url }
       format.json { head :no_content }
+    end
+  end
+
+  def is_user_owner
+    if current_user.id != params[:user_id].to_i
+      redirect_to current_user
     end
   end
 end

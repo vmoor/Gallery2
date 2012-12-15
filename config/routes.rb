@@ -13,11 +13,13 @@ Gallery2::Application.routes.draw do
                                        :registration => 'register', 
                                        :sign_up => 'signup' }
 
-resources :customers
 
-resources :users do
-  resources :albums do
-    resources :photos, :only => [:index, :create, :destroy]
+
+resources :users, :except => [:index] do
+  resources :customers do 
+    resources :albums do
+      resources :photos, :only => [:index, :create, :destroy]
+    end
   end
 end
 
