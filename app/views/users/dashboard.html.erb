@@ -1,0 +1,13 @@
+<h2> Dashboard </h2>
+<p>Hallo <%= current_user.email%> </p>
+
+<% @customers.each do |customer| %>
+<p>
+	<%= customer.username %><br />
+	<%= customer.email %><br />
+	<%= customer.password_visible %>
+</p>
+<% end %> 
+
+<%= link_to 'New customer', new_user_customer_path(current_user) %>
+

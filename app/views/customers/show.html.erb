@@ -4,6 +4,14 @@
   <b>Name:</b>
   <%= @customer.name %>
 </p>
+<p>
+  <b>Username:</b>
+  <%= @customer.username %>
+</p>
+<p>
+  <b>Password:</b>
+  <%= @customer.password_visible %>
+</p>
 
 <p>
   <b>Email:</b>
@@ -11,5 +19,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<%#= link_to 'Edit', edit_customer_path(@customer) %> |
+<%#= link_to 'Back', customers_path %>

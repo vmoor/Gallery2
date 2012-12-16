@@ -16,7 +16,10 @@ Gallery2::Application.routes.draw do
 
 
 resources :users, :except => [:index] do
-  resources :customers do 
+  member do
+    get :dashboard
+  end
+  resources :customers, :except => [:index] do 
     resources :albums do
       resources :photos, :only => [:index, :create, :destroy]
     end

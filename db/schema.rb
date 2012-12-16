@@ -23,23 +23,20 @@ ActiveRecord::Schema.define(:version => 20121211131636) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
+    t.string   "email"
     t.integer  "user_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.string   "password_visible"
+    t.string   "username"
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "encrypted_password",  :default => "", :null => false
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",       :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
   end
-
-  add_index "customers", ["email"], :name => "index_customers_on_email", :unique => true
-  add_index "customers", ["reset_password_token"], :name => "index_customers_on_reset_password_token", :unique => true
 
   create_table "photos", :force => true do |t|
     t.integer  "album_id"

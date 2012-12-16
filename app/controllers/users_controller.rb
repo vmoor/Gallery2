@@ -46,9 +46,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def dashboard 
+    @customers = current_user.customers
+  end
+
   def is_user_owner
-    if current_user.id != params[:id].to_i
-      redirect_to current_user
+    if current_user
+      if current_user.id != params[:id].to_i
+        redirect_to dashboard_user_path(current_user)
+      end
+    else
+      redirect_to root_path
     end
   end
 end

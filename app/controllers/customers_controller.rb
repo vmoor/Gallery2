@@ -1,20 +1,11 @@
 class CustomersController < ApplicationController
-  before_filter :is_user_owner
-  # GET /customers
-  # GET /customers.json
-  def index
-    @customers = Customer.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @customers }
-    end
-  end
+  before_filter :check_owner
 
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @customer = Customer.find(params[:id])
+    @user = User.find(params[:user_id])
+    @customer = @user.customers.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +16,8 @@ class CustomersController < ApplicationController
   # GET /customers/new
   # GET /customers/new.json
   def new
-    @customer = Customer.new
+    @user = current_user
+    @customer = @user.customers.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,11 +33,16 @@ class CustomersController < ApplicationController
   # POST /customers
   # POST /customers.json
   def create
-    @customer = Customer.new(params[:customer])
+    @user = current_user
+    @customer = @user.customers.build(params[:customer])
+    generated_password = Devise.friendly_token.first(6)
+
+    @customer.password = generated_password
+    @customer.password_visible = generated_password
 
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
+        format.html { redirect_to user_customer_path(@user, @customer), notice: 'Customer was successfully created.' }
         format.json { render json: @customer, status: :created, location: @customer }
       else
         format.html { render action: "new" }
@@ -82,9 +79,17 @@ class CustomersController < ApplicationController
     end
   end
 
-  def is_user_owner
-    if current_user.id != params[:user_id].to_i
-      redirect_to current_user
+  def check_owner
+    if current_user
+      if current_user.id != params[:user_id].to_i
+        redirect_to current_user
+      end
+    elsif current_customer
+      unless ((current_customer.id == params[:id].to_i) && (current_customer.user.id == params[:user_id].to_i))
+        redirect_to user_customer_path(current_customer.user_id, current_customer)
+      end
+    else
+      redirect_to root_path
     end
   end
 end
