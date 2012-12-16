@@ -1,4 +1,4 @@
-  <%= form_for [@album, @album.photos.build], :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+  <%= form_for [@user, @customer, @album, @album.photos.build], :html => { :multipart => true, :id => "fileupload"  } do |f| %>
       <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
        <div class="container-fluid">
         <div class="row-fluid">

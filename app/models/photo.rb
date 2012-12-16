@@ -12,7 +12,7 @@ class Photo < ActiveRecord::Base
       "size" => image.size,
       "url" => image.url,
       "thumbnail_url" => image.thumb.url,
-      "delete_url" => album_photo_path(:album_id => album_id, :id => id),
+      "delete_url" => user_customer_album_photo_path(:user_id => album.customer.user_id, :customer_id => album.customer_id , :album_id => album_id, :id => id),
       "delete_type" => "DELETE"
     }
   end

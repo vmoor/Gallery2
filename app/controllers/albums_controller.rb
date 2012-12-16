@@ -1,8 +1,11 @@
 class AlbumsController < ApplicationController
+  before_filter :check_owner
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.all
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @albums = @customer.albums
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +16,9 @@ class AlbumsController < ApplicationController
   # GET /albums/1
   # GET /albums/1.json
   def show
-    @album = Album.find(params[:id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:id])
     @photos = @album.photos
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +29,9 @@ class AlbumsController < ApplicationController
   # GET /albums/new
   # GET /albums/new.json
   def new
-    @album = Album.new
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,17 +41,21 @@ class AlbumsController < ApplicationController
 
   # GET /albums/1/edit
   def edit
-    @album = Album.find(params[:id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:id])
   end
 
   # POST /albums
   # POST /albums.json
   def create
-    @album = Album.new(params[:album])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.build(params[:album])
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
+        format.html { redirect_to user_customer_album_path(@user, @customer, @album), notice: 'Album was successfully created.' }
         format.json { render json: @album, status: :created, location: @album }
       else
         format.html { render action: "new" }
@@ -56,11 +67,13 @@ class AlbumsController < ApplicationController
   # PUT /albums/1
   # PUT /albums/1.json
   def update
-    @album = Album.find(params[:id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:id])
 
     respond_to do |format|
       if @album.update_attributes(params[:album])
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
+        format.html { redirect_to user_customer_albums_path(@user, @customer), notice: 'Album was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -72,12 +85,27 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
-    @album = Album.find(params[:id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:id])
     @album.destroy
 
     respond_to do |format|
-      format.html { redirect_to albums_url }
+      format.html { redirect_to user_customer_albums_path(@user, @customer) }
       format.json { head :no_content }
     end
+  end
+
+  def check_owner
+    if customer_signed_in?
+      redirect_to user_customer_path(current_customer.user, current_customer)
+    elsif user_signed_in?
+      unless current_user.id == params[:user_id].to_i
+        redirect_to user_path(current_user)
+      end
+    else
+      redirect_to new_user_session_path
+    end
+      
   end
 end

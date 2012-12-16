@@ -2,7 +2,9 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.json
   def index
-    @album = Album.find(params[:album_id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:album_id])
     @photos = @album.photos
  #   @photo = @album.photos.build
     respond_to do |format|
@@ -14,7 +16,9 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
-    @album = Album.find(params[:album_id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:album_id])
     @photo = @album.photos.find(params[:id])
 
     respond_to do |format|
@@ -26,7 +30,9 @@ class PhotosController < ApplicationController
   # GET /photos/new
   # GET /photos/new.json
   def new
-    @album = Album.find(params[:album_id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:album_id])
     @photo = @album.photos.build
 
     respond_to do |format|
@@ -37,14 +43,18 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
-    @album = Album.find(params[:album_id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:album_id])
     @photo = @album.photos.find(params[:id])
   end
 
   # POST /photos
   # POST /photos.json
   def create
-    @album = Album.find(params[:album_id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:album_id])
     @photo = @album.photos.build(params[:photo])
 
     respond_to do |format|
@@ -66,12 +76,14 @@ class PhotosController < ApplicationController
   # PUT /photos/1
   # PUT /photos/1.json
   def update
-    @album = Album.find(params[:album_id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:album_id])
     @photo = @album.photos.find(params[:id])
 
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
-        format.html { redirect_to album_photos_url(@album), notice: 'Photo was successfully updated.' }
+        format.html { redirect_to user_customer_album_photos_url(@user, @customer, @album), notice: 'Photo was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -83,7 +95,9 @@ class PhotosController < ApplicationController
   # DELETE /photos/1
   # DELETE /photos/1.json
   def destroy
-    @album = Album.find(params[:album_id])
+    @user = current_user
+    @customer = @user.customers.find(params[:customer_id])
+    @album = @customer.albums.find(params[:album_id])
     @photo = @album.photos.find(params[:id])
     @photo.destroy
 
