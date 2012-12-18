@@ -327,11 +327,7 @@
                 placeholder: "Select or Enter tag"
         });
 
-        // FORM - UNIFORM PLUGIN 
-        // ------------------------------------------------------------------------------------------------ * -->
-        $("input.checkbox, input.radio, input:file.input-file").uniform({
-                radioClass: 'radios' // edited class - the original radio
-        });
+       
 
         // FORM - INPUTMASK PLUGIN
         // ------------------------------------------------------------------------------------------------ * -->

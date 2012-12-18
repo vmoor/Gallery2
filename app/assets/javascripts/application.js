@@ -39,7 +39,6 @@
 //= require qtip2/dist/jquery.qtip.min.js
 //= require list/js/list.min.js
 //= require list/plugins/list.paging.min.js
-//= require uniform/jquery.uniform.min.js
 
 //= require xbreadcrumbs/xbreadcrumbs.js
 
