@@ -32,8 +32,6 @@ GEM
     bcrypt-ruby (3.0.1)
     bitmask_attributes (0.3.0)
       activerecord (~> 3.0)
-    bootstrap-sass (2.2.1.1)
-      sass (~> 3.2)
     builder (3.0.4)
     capistrano (2.13.5)
       highline
@@ -139,7 +137,6 @@ PLATFORMS
 
 DEPENDENCIES
   bitmask_attributes
-  bootstrap-sass
   capistrano
   carrierwave
   coffee-rails (~> 3.2.1)

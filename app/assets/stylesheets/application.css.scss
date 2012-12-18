@@ -10,7 +10,15 @@
  *
  *= require_self
  *= require jquery.fileupload-ui
- *= require_tree .
+ *= require lib/bootstrap.css
+ *= require lib/bootstrap-responsive.css
+ *= require boo-coloring.css
+ *= require boo-utility.css
+ *= require boo.css
+ *= require docs.css
+ *= require icon-fugue.min.css
+ *= require photos.css
+ *= require scaffolds.css.scss
+ 
  */
 
- @import "bootstrap";

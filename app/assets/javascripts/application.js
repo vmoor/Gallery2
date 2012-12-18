@@ -11,8 +11,12 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 // Loads all Bootstrap javascripts
-//= require jquery
+//= require lib/jquery.js
 //= require jquery_ujs
+//= require lib/jquery-ui.js
+//= require lib/jquery.cookie.js
 //= require jquery-fileupload
-//= require bootstrap
-//= require_tree .
+//= require lib/bootstrap.min.js
+//= require main.js
+//= require template_application.js
+
