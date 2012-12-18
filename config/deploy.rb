@@ -11,9 +11,9 @@ set :repository,  "git://github.com/vmoor/Gallery2.git"
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "ec2-107-21-162-192.compute-1.amazonaws.com"                          # Your HTTP server, Apache/etc
-role :app, "ec2-107-21-162-192.compute-1.amazonaws.com"                          # This may be the same as your `Web` server
-role :db,  "ec2-107-21-162-192.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
+role :web, "ec2-50-16-20-243.compute-1.amazonaws.com"                          # Your HTTP server, Apache/etc
+role :app, "ec2-50-16-20-243.compute-1.amazonaws.com"                          # This may be the same as your `Web` server
+role :db,  "ec2-50-16-20-243.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
 set :user, "ubuntu"

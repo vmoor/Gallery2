@@ -20,22 +20,23 @@
  *= require photos.css
  *= require scaffolds.css.scss
 
+
+
+*= require qtip2/dist/jquery.qtip.min.css
+*= require select2/select-theme.css
+*= require select2/select2.css
+*= require google-code-prettify/prettify.css
+
+
+*= require bootstrap-timepicker/css/timepicker.css
+*= require bootstrap-progressbar/css/bootstrap-progressbar.min.css
+*= require bootstrap-wysihtml5/src/bootstrap-wysihtml5.css
+*= require bootstrap-modal/css/bootstrap-modal-bootheme.css
+*= require bootstrap-toggle-buttons/css/bootstrap-toggle-buttons-theme.css
+*= require bootstrap-select/bootstrap-select.css
+
+*= require fontello/css/fontello.css
+*= require awesome/css/font-awesome.css
+
+*= require xbreadcrumbs/xbreadcrumbs.css
 */
-
-@import "qtip2/dist/jquery.qtip.min.css";
-@import "select2/select-theme.css";
-@import "select2/select2.css";
-@import "google-code-prettify/prettify.css";
-
-
-@import "bootstrap-timepicker/css/timepicker.css";
-@import "bootstrap-progressbar/css/bootstrap-progressbar.min.css";
-@import "bootstrap-wysihtml5/src/bootstrap-wysihtml5.css";
-@import "bootstrap-modal/css/bootstrap-modal-bootheme.css";
-@import "bootstrap-toggle-buttons/css/bootstrap-toggle-buttons-theme.css";
-@import "bootstrap-select/bootstrap-select.css";
-
-@import "fontello/css/fontello.css";
-@import "awesome/css/font-awesome.css";
-
-@import "xbreadcrumbs/xbreadcrumbs.css";
