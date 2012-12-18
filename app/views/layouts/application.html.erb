@@ -6,42 +6,222 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-      <div class="navbar navbar-inverse">
-        <div class="navbar-inner">
-          <div class="container">
-            <a class="brand" href="/">Gallery2</a>
-            <% if user_signed_in? %>
-              <div class="nav-collapse">
-                <ul class="nav pull-right">
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged as: <%= current_user.email %> <b class="caret"></b></a>
+<body class="sidebar-left panel-side">
+<% if user_signed_in? || customer_signed_in? %>
+  <div class="page-container">
+    <div id="header-container">
+      <div id="header">
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <div class="container-fluid">
+              <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> 
+                <span class="icon-bar"></span> <span class="icon-bar"></span> 
+                <span class="icon-bar"></span> 
+              </button>
+              <a class="brand" href="javascript:void(0);">
+                <img src="/assets/demo/logo-brand.png">
+              </a>
+              <div class="search-global">
+                <input id="globalSearch" class="search search-query input-medium" type="search">
+                <a class="search-button" href="javascript:void(0);">
+                  <i class="fontello-icon-search-5"></i>
+                </a> 
+              </div>
+              <div class="nav-collapse collapse">
+                <ul class="nav user-menu visible-desktop">
+                  <li>
+                    <a class="btn-glyph fontello-icon-edit tip-bc" href="javascript:void(0);" title="Messages">
+                      <span class="badge badge-important">8</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn-glyph fontello-icon-mail-1 tip-bc" href="javascript:void(0);" title="Emails">
+                    </a>
+                  </li>
+                  <li>
+                    <a class="btn-glyph fontello-icon-lifebuoy tip-bc" href="javascript:void(0);" title="Support">
+                      <span class="badge badge-important">4</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul class="nav">
+                  <li class="active"> 
+                    <a href="dashboard-one.html">Dashboard</a> 
+                  </li>
+                  <li> 
+                    <a href="javascript:void(0);">Components</a> 
+                  </li>
+                  <li> 
+                    <a href="component-fullcalendar-demo.html">
+                      <span class="fontello-icon-calendar"></span>Calenda
+                    </a> 
+                  </li>
+                  <li> 
+                    <a href="javascript:void(0);">
+                      <span class="fontello-icon-users"></span>Contacts
+                    </a> 
+                  </li>
+                  <li class="dropdown"> 
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                      <span class="fontello-icon-list-1"></span>Customize <b class="caret"></b>
+                    </a>
                     <ul class="dropdown-menu">
-                      <li> <a href="<%= dashboard_user_path(current_user) %>"><i class="icon-home"></i> Dashboard </a> </li>
-                       <li><a href="<%= user_path(current_user) %>"><i class="icon-user"></i> Profile</a></li>
-                       <li class="divider"></li>
-                      <li><a href="<%= destroy_user_session_path %>" data-method='delete'><i class="icon-off"></i> Logout</a></li>
+                      <li>
+                        <a href="component-form-demo.html">Demo Form</a>
+                      </li>
+                      <li>
+                        <a href="component-widgets-remember.html">Remember</a>
+                      </li>
+                      <li>
+                        <a href="component-widgets-users.html">User List</a>
+                      </li>
+                      <li class="divider"></li>
+                      <li class="nav-header">Next Update</li>
+                      <li>
+                        <a href="javascript:void(0);">Contacts</a>
+                      </li>
+                      <li>
+                        <a href="javascript:void(0);">Email</a>
+                      </li>
                     </ul>
                   </li>
                 </ul>
               </div>
-            <% elsif customer_signed_in? %>
-              <div class="nav-collapse">
-                <ul class="nav pull-right">
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged as: <%= current_customer.username %> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                       <li><a href="<%= user_customer_path(current_customer.user) %>"><i class="icon-user"></i> Profile</a></li>
-                       <li class="divider"></li>
-                      <li><a href="<%= destroy_customer_session_path %>" data-method='delete'><i class="icon-off"></i> Logout</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            <% end %>
+            </div>
           </div>
         </div>
+        <!-- // navbar -->
+
+        <div class="header-drawer">
+            <div class="mobile-nav text-center visible-phone"> 
+              <a href="javascript:void(0);" class="mobile-btn" data-toggle="collapse" data-target=".sidebar">
+                <i class="aweso-icon-chevron-down"></i> Components
+              </a> 
+            </div>
+            <!-- // Resposive navigation -->
+            <div class="breadcrumbs-nav hidden-phone">
+              <ul id="breadcrumbs" class="breadcrumb">
+                <li>
+                  <a href="javascript:void(0);"><i class="fontello-icon-home f12"></i> Dashboard
+                  </a> 
+                  <span class="divider">/</span>
+                </li>
+                <li class="dropdown">
+                  <a href="javascript:void(0);">Table </a> 
+                  <span class="divider">/</span>
+                  <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);">Table</a></li>
+                    <li><a href="javascript:void(0);">Elements</a></li>
+                    <li><a href="javascript:void(0);">Elements</a></li>
+                    <li><a href="javascript:void(0);">Elements</a></li>
+                  </ul>
+                </li>
+                <li class="active">Boo Admin </li>
+              </ul>
+            </div>
+            <!-- // breadcrumbs --> 
+        </div>
+        <!-- // drawer --> 
       </div>
+    </div>
+    <!-- // header-container -->
+    <div id="main-container">
+        <div id="main-sidebar" class="sidebar sidebar-inverse">
+            <div class="sidebar-item">
+                <div class="media profile">
+                    <div class="media-thumb media-left thumb-bordereb"> <a class="img-shadow" href="javascript:void(0);"><img class="thumb" src="assets/img/demo/demo-avatar9604.jpg"></a> </div>
+                    <div class="media-body">
+                        <h5 class="media-heading">Twitter Bootstrap <small>as Administrator</small></h5>
+                        <p class="data">Last Access: 16 May 15:30</p>
+                    </div>
+                </div>
+            </div>
+            <!-- // sidebar item - profile -->
+            
+            <ul id="mainSideMenu" class="nav nav-list nav-side">
+                <li class="accordion-group">
+                    <div class="accordion-heading active"> <a href="#accDash" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon fontello-icon-monitor"></span> <i class="chevron fontello-icon-right-open-3"></i> Dashboards </a> </div>
+                    <ul class="accordion-content nav nav-list collapse in" id="accDash">
+                        <li> <a href="dashboard-one.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Dashboard</span> Demo 1 </a> </li>
+                        <li class="active"> <a href="dashboard-two.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Dashboard</span> Demo 2 </a> </li>
+                    </ul>
+                </li>
+                <!-- // item accordionMenu Dashboard -->
+                <li class="accordion-group">
+                    <div class="accordion-heading"> <a href="#accForms" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon aweso-icon-list-alt"></span><i class="chevron fontello-icon-right-open-3"></i> Form </a> </div>
+                    <ul class="accordion-content nav nav-list collapse" id="accForms">
+                        <li> <a href="component-form-demo.html"> <i class="fontello-icon-right-dir"></i> Demo Form </a> </li>
+                        <li> <a href="component-form-element.html"> <i class="fontello-icon-right-dir"></i> Form Element </a> </li>
+                        <li> <a href="component-form-extension.html"> <i class="fontello-icon-right-dir"></i> Form Extension</a> </li>
+                        <li> <a href="component-form-wizard.html"> <i class="fontello-icon-right-dir"></i> Form Wizard</a> </li>
+                    </ul>
+                </li>
+                <!-- // item accordionMenu Forms -->
+                <li class="accordion-group">
+                    <div class="accordion-heading"> <a href="#accTables" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon fontello-icon-align-justify"></span> <i class="chevron fontello-icon-right-open-3"></i> Tables </a> </div>
+                    <ul class="accordion-content nav nav-list collapse" id="accTables">
+                        <li> <a href="component-table.html"> <i class="fontello-icon-right-dir"></i> Base Table </a> </li>
+                        <li> <a href="component-table-boo.html"> <i class="fontello-icon-right-dir"></i> Boo Table </a> </li>
+                        <li> <a href="component-table-datatable.html"> <i class="fontello-icon-right-dir"></i> DataTable </a> </li>
+                    </ul>
+                </li>
+                <!-- // item accordionMenu Tables -->
+                <li class="accordion-group">
+                    <div class="accordion-heading"> <a href="#accStatistics" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon fontello-icon-chart"></span> <i class="chevron fontello-icon-right-open-3"></i> Statistics </a> </div>
+                    <ul class="accordion-content nav nav-list collapse" id="accStatistics">
+                        <li> <a href="statistic-flot.html"> <i class="fontello-icon-right-dir"></i> Charts </a> </li>
+                        <li> <a href="statistic-sparkline.html"> <i class="fontello-icon-right-dir"></i> Sparklines </a> </li>
+                    </ul>
+                </li>
+                <!-- // item accordionMenu Statistics -->
+                <li class="accordion-group">
+                    <div class="accordion-heading"> <a href="#accWidgets" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon  fontello-icon-window"></span> <i class="chevron fontello-icon-right-open-3"></i> Widgets </a> </div>
+                    <ul class="accordion-content nav nav-list collapse" id="accWidgets">
+                        <li> <a href="component-widget-style.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Widgets </span> Style </a> </li>
+                        <li> <a href="component-widget-custom.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Widgets </span> Custom </a> </li>
+                    </ul>
+                </li>
+                <!-- // item accordionMenu Widgets -->
+                <li class="accordion-group">
+                    <div class="accordion-heading"> <a href="#accButtons" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon fontello-icon-puzzle"></span> <i class="chevron fontello-icon-right-open-3"></i> UI Elements </a> </div>
+                    <ul class="accordion-content nav nav-list collapse" id="accButtons">
+                        <li> <a href="elements-button.html"> <i class="fontello-icon-right-dir"></i> Button </a> </li>
+                        <li> <a href="elements-icon-font.html"> <i class="fontello-icon-right-dir"></i> Iconic fonts </a> </li>
+                        <li> <a href="elements-icon-fugue-demo.html"> <i class="fontello-icon-right-dir"></i> Icon </a> </li>
+                        <li> <a href="elements-wells.html"> <i class="fontello-icon-right-dir"></i> Wells </a> </li>
+                        <li> <a href="elements-tabs.html"> <i class="fontello-icon-right-dir"></i> Tabs </a> </li>
+                        <li> <a href="elements-modals.html"> <i class="fontello-icon-right-dir"></i> Modal </a> </li>
+                        <li> <a href="elements-progressbar.html"> <i class="fontello-icon-right-dir"></i> Progressbar </a> </li>
+                    </ul>
+                </li>
+                <!-- // item accordionMenu UI Elements -->
+                <li class="accordion-group">
+                    <div class="accordion-heading"> <a href="#accCalendar" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon fontello-icon-calendar"></span> <i class="chevron fontello-icon-right-open-3"></i> Calendar </a> </div>
+                    <ul class="accordion-content nav nav-list collapse" id="accCalendar">
+                        <li> <a href="component-fullcalendar-demo.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Calendar </span> Demo </a> </li>
+                        <li> <a href="component-fullcalendar.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Calendar </span> Style </a> </li>
+                    </ul>
+                </li>
+                <!-- // item accordionMenu Calendar -->
+            </ul>
+            <!-- // sidebar menu -->
+            
+            <div class="sidebar-item"></div>
+            <!-- // sidebar item --> 
+            
+        </div>
+        <!-- // sidebar -->
+         <div id="main-content" class="main-content container-fluid">
+          <%= yield %>   
+        </div>
+        <!-- // main-content --> 
+      </div>
+      <!-- // main-container  -->
+  </div>
+  <!-- // page-container  --> 
+<% else %>
+  <%= yield %>
+<% end %>
 <!--<div class="container-fluid">
   <div class="row-fluid">
     <div class="span12">
@@ -54,7 +234,7 @@
       <!--Sidebar content-->
   <!--  </div>
     <div class="span10"> -->
-       <%= yield %>
+       
  <!--   </div>
 
   </div>

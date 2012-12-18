@@ -1,11 +1,11 @@
 /*
 	xBreadcrumbs (Extended Breadcrums) jQuery Plugin
-	© 2009 ajaxBlender.com
+	2009 ajaxBlender.com
 	For any questions please visit www.ajaxblender.com 
 	or email us at support@ajaxblender.com
 */
 
-;(function($){
+(function($){
 	/*  Variables  */
 	$.fn.xBreadcrumbs = function(settings){
 		var element = $(this);

@@ -19,7 +19,24 @@
  *= require icon-fugue.min.css
  *= require photos.css
  *= require scaffolds.css.scss
- *= require extension.css.scss
 
- */
+*/
 
+@import "qtip2/dist/jquery.qtip.min.css";
+@import "uniform/css/uniform-theme.css";
+@import "select2/select-theme.css";
+@import "select2/select2.css";
+@import "google-code-prettify/prettify.css";
+
+
+@import "bootstrap-timepicker/css/timepicker.css";
+@import "bootstrap-progressbar/css/bootstrap-progressbar.min.css";
+@import "bootstrap-wysihtml5/src/bootstrap-wysihtml5.css";
+@import "bootstrap-modal/css/bootstrap-modal-bootheme.css";
+@import "bootstrap-toggle-buttons/css/bootstrap-toggle-buttons-theme.css";
+@import "bootstrap-select/bootstrap-select.css";
+
+@import "fontello/css/fontello.css";
+@import "awesome/css/font-awesome.css";
+
+@import "xbreadcrumbs/xbreadcrumbs.css";
