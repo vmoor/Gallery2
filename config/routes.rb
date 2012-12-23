@@ -19,7 +19,7 @@ resources :users, :except => [:index] do
   member do
     get :dashboard
   end
-  resources :customers, :except => [:index] do 
+  resources :customers do 
     resources :albums do
       resources :photos, :only => [:index, :create, :destroy]
     end

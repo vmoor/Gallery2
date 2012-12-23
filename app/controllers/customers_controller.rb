@@ -1,6 +1,18 @@
 class CustomersController < ApplicationController
   before_filter :check_owner
 
+  # GET /customers
+  # GET /customers.json
+  def index
+    @user = current_user
+    @customers = @user.customers
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @customers }
+    end
+  end
+
   # GET /customers/1
   # GET /customers/1.json
   def show

@@ -1,27 +1,59 @@
-<h1>Listing customers</h1>
+  <div class="well well-box well-nice no-border">  
+    <table id="customerShowTable" class="table boo-table _table-condensed table-content table-hover table-bordered"  data-provides="rowlink">
+      <caption></caption>
+      <thead>
+        <tr>
+          <th scope="col">ID <span class="column-sorter"></span></th>
+          <th scope="col">Name <span class="column-sorter"></span></th>
+          <th scope="col">Email <span class="column-sorter"></span></th>
+          <th scope="col">Login <span class="column-sorter"></span></th>
+          <th scope="col">Kennwort<span class="column-sorter"></span></th>
+          <th class="action" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%=customer.id%></td>
+            <td><%=customer.name%></td>
+            <td><%=customer.email%></td>
+            <td><%=customer.username%></td>
+            <td><%=customer.password_visible%></td>
+            <td class="action">
+              <a class="icon" href="<%= user_customer_path(@user, customer) %>">
+                <i class="fugue-magnifier" title="detail"></i>
+              </a> 
+              <a class="icon" href="">
+                <i class="fugue-pencil" title="edit"></i>
+              </a>
+              <a class="icon" href="">
+                <i class="fugue-cross-circle" title="delete"></i>
+              </a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <script type="text/javascript">
+    jQuery(function($){
+      $('#customerShowTable').dataTable({
+        iDisplayLength: 10,
+        sDom: "<'row-fluid' <'span4'l> <'span8'pf> > rt <'row-fluid' <'span12'i> >"
+      });
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      $('tbody.rowlink').rowlink();
+    });
+  </script>
 
-<% @customers.each do |customer| %>
-  <tr>
-    <td><%= customer.name %></td>
-    <td><%= customer.email %></td>
-    <td><%= customer.username %></td>
-    <td><%= customer.password_visible %></td>
-    <td><%#= link_to 'Show', customer %></td>
-    <td><%#= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%#= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
 
-<%#= link_to 'New Customer', new_customer_path %>
+
+
+<%= link_to 'New Customer', new_user_customer_path(current_user) %>
+
+
+<%= javascript_include_tag"bootstrap-rowlink/js/bootstrap-rowlink.js" %>
+<%= javascript_include_tag "datatables/media/js/jquery.dataTables.js" %>
+<%= javascript_include_tag "datatables/plugin/jquery.dataTables.plugins.js" %>
+<%= javascript_include_tag "datatables/plugin/jquery.dataTables.columnFilter.js" %>

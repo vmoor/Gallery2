@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="sidebar-left panel-side">
-<% if user_signed_in? || customer_signed_in? %>
+<% if user_signed_in? %>
   <div class="page-container">
     <div id="header-container">
       <div id="header">
@@ -45,8 +45,8 @@
                   </li>
                 </ul>
                 <ul class="nav">
-                  <li class="active"> 
-                    <a href="dashboard-one.html">Dashboard</a> 
+                  <li> 
+                    <a href="<%= dashboard_user_path(current_user) %>">Dashboard</a> 
                   </li>
                   <li> 
                     <a href="javascript:void(0);">Components</a> 
@@ -142,15 +142,15 @@
                 <li class="accordion-group">
                     <div class="accordion-heading active"> <a href="#accDash" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon fontello-icon-monitor"></span> <i class="chevron fontello-icon-right-open-3"></i> Dashboards </a> </div>
                     <ul class="accordion-content nav nav-list collapse in" id="accDash">
-                        <li> <a href="dashboard-one.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Dashboard</span> Demo 1 </a> </li>
-                        <li class="active"> <a href="dashboard-two.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Dashboard</span> Demo 2 </a> </li>
+                        <li> <a href="<%= dashboard_user_path(current_user) %>"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Dashboard</span> Demo 1 </a> </li>
+                        <li> <a href="dashboard-two.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Dashboard</span> Demo 2 </a> </li>
                     </ul>
                 </li>
                 <!-- // item accordionMenu Dashboard -->
                 <li class="accordion-group">
-                    <div class="accordion-heading"> <a href="#accForms" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon aweso-icon-list-alt"></span><i class="chevron fontello-icon-right-open-3"></i> Form </a> </div>
+                    <div class="accordion-heading"> <a href="#accForms" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon aweso-icon-list-alt"></span><i class="chevron fontello-icon-right-open-3"></i> Kunden </a> </div>
                     <ul class="accordion-content nav nav-list collapse" id="accForms">
-                        <li> <a href="component-form-demo.html"> <i class="fontello-icon-right-dir"></i> Demo Form </a> </li>
+                        <li> <a href="<%= user_customers_path(current_user) %>"> <i class="fontello-icon-right-dir"></i> Kundenliste </a> </li>
                         <li> <a href="component-form-element.html"> <i class="fontello-icon-right-dir"></i> Form Element </a> </li>
                         <li> <a href="component-form-extension.html"> <i class="fontello-icon-right-dir"></i> Form Extension</a> </li>
                         <li> <a href="component-form-wizard.html"> <i class="fontello-icon-right-dir"></i> Form Wizard</a> </li>

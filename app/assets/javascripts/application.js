@@ -21,7 +21,7 @@
 //= require template_application.js
 
 //= require bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.min.js
-//= require bootstrap-rowlink/js/bootstrap-rowlink.js
+
 //= require bootstrap-wysihtml5/src/bootstrap-wysihtml5.js
 //= require bootstrap-select/bootstrap-select.js
 //= require bootstrap-bootbox/bootbox.min.js
@@ -41,4 +41,6 @@
 //= require list/plugins/list.paging.min.js
 
 //= require xbreadcrumbs/xbreadcrumbs.js
+
+
 
