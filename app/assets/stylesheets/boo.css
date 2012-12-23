@@ -4575,6 +4575,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff2d3032', e
  ------------------------------------------- */
 
 #header-container {
+  margin-top: -40px;
   height: 76px;
 }
 
