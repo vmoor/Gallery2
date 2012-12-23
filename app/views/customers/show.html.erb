@@ -1,31 +1,72 @@
 <div class="row-fluid page-head">
-  <h2 class="page-title"><i class="fontello-icon-monitor"></i> Dashboard <small>demo dashboard 2</small></h2>
-  <p class="pagedesc">Sample preparation dashboard Boo of Administrators - Demopage Two  </p>
-  <div class="page-bar">
-    <div class="btn-toolbar"> </div>
-  </div>
+  <h2 class="page-title"><i class="fontello-icon-user-1"></i><%= @customer.name %></h2>
 </div>
 <!-- // page head -->
 <p id="notice"><%= notice %></p>
+<div id="page-content" class="page-content">
+  <section>
+    <div class="row-fluid margin-top20">
+      <div class="span12 grider">
+      	<div class="span9">
+			<div class="widget widget-box widget-recent">
+                <div class="widget-header">
+            	    <h4><i class="fontello-icon-picture"></i> Fotoalben <h4>
+                </div>
+                <div class="widget-content">
+                	<div class="widget-body">
+                		<% @albums.each do |album| %>
+                			<div class="span2">
+                				<a href="<%= user_customer_album_path(@user, @customer, album) %>">
+                					<img src="/assets/album_icon.png">
+                				</a>
+                				<div class="fotoalbum_titel">
+                					<%= album.title %> <br />
+                					(<%= album.photos.length%> Fotos)
 
-<p>
-  <b>Name:</b>
-  <%= @customer.name %>
-</p>
-<p>
-  <b>Username:</b>
-  <%= @customer.username %>
-</p>
-<p>
-  <b>Password:</b>
-  <%= @customer.password_visible %>
-</p>
+                				</div>
+                   			</div>
+                		<% end %>
+                    </div>
+                </div>
+            </div>
+            <!-- // Widget -->                       
+        </div>
+        <!-- // Column --> 
+        <div class="span3">
+			<div class="widget widget-box widget-recent">
+                <div class="widget-header">
+            	    <h4><i class="fontello-icon-user"></i>Recent Article <small>Custom thumb size</small></h4>
+                </div>
+                <div class="widget-content">
+                	<div class="widget-body">
+                        <ul class="widget-list">
+                            <li class="media">
+                                <%= link_to image_tag "album_icon.png"%>
+                            </li>
+                            <li class="media">
+                    		    <%= link_to image_tag "album_icon.png"%>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- // Widget -->                       
+        </div>
+        <!-- // Column --> 
+      </div>
+    </div>
+    <!-- // Example row --> 
+  </section>
+</div>
+<!-- // page content --> 
 
-<p>
-  <b>Email:</b>
-  <%= @customer.email %>
-</p>
 
 
-<%#= link_to 'Edit', edit_customer_path(@customer) %> |
-<%#= link_to 'Back', customers_path %>
+
+
+
+
+                        
+                      
+                        
+                    
