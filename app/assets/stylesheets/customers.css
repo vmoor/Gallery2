@@ -2,4 +2,27 @@
 
 .fotoalbum_titel {
 	text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 145px;
+
+}
+
+.album_delete_icon {
+	text-align: right;
+	margin-bottom: -24px;
+	padding-right: 15px;
+
+}
+
+.album_box {
+	width: 150px;
+	display: inline-block;
+
+}
+
+.album_box:hover {
+	background: #BBBBBB;
 }

@@ -14,7 +14,7 @@
 
         <div class="well well-box well-nice no-border">  
 
-          <table id="customerShowTable" class="table boo-table _table-condensed table-content table-hover table-bordered"  data-provides="rowlink">
+          <table id="customerShowTable" class="table boo-table _table-condensed table-content table-hover table-bordered"  > <!-- data-provides="rowlink" -->
 
             <thead>
               <tr>
@@ -28,7 +28,7 @@
             </thead>
             <tbody>
               <% @customers.each do |customer| %>
-                <tr>
+                <tr data-customer-line-id="<%= customer.id %>">
                   <td><%=customer.id%></td>
                   <td><%=customer.name%></td>
                   <td><%=customer.email%></td>
@@ -41,9 +41,8 @@
                     <a class="icon" href="">
                       <i class="fugue-pencil" title="edit"></i>
                     </a>
-                    <a class="icon" href="">
-                      <i class="fugue-cross-circle" title="delete"></i>
-                    </a>
+  
+                    <%= link_to '', user_customer_path(@user, customer, :json), :class =>"fugue-cross-circle", "data-customer-destroy-id" => customer.id, data: { confirm: 'Wollen Sie diesen Kunden löschen?' } %>
                   </td>
                 </tr>
               <% end %>
@@ -66,8 +65,32 @@
         sDom: "<'row-fluid' <'span4'l> <'span8'pf> > rt <'row-fluid' <'span12'i> >"
       });
 
-      $('tbody.rowlink').rowlink();
+ //     $('tbody.rowlink').rowlink();
     });
+
+
+
+    $('a[data-customer-destroy-id]').live('click', function(){
+      var a = $(this);
+      $.ajax({
+        data: {"_method":"delete"},
+        type: 'post',
+        url: a.attr("href"),
+        success: process,
+        error: function(msg){
+          console.log("error");
+          alert(msg);
+        }
+      });
+      return false;
+    });
+
+    function process(data){
+      if(data.status == "deleted") {
+         $('tr[data-customer-line-id=' +data.customer.id+ ']').hide();
+      }
+      console.log(data);
+    }
   </script>
 
 

@@ -15,14 +15,17 @@
                 <div class="widget-content">
                 	<div class="widget-body">
                 		<% @albums.each do |album| %>
-                			<div class="span2">
+                			<div class="album_box" id="<%= album.id%>"> 
+                                <div class="album_delete_icon"> 
+                                    <%= link_to image_tag("/assets/album/delete_icon.png", :border=>0), user_customer_album_path(@user, @customer, album), method: :delete, data: { confirm: 'Are you sure?' }  %>
+                                    
+                                </div>
                 				<a href="<%= user_customer_album_path(@user, @customer, album) %>">
-                					<img src="/assets/album_icon.png">
+                					<img src="/assets/album/album_icon.png">
                 				</a>
                 				<div class="fotoalbum_titel">
                 					<%= album.title %> <br />
                 					(<%= album.photos.length%> Fotos)
-
                 				</div>
                    			</div>
                 		<% end %>

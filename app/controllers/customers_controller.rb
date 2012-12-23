@@ -83,12 +83,18 @@ class CustomersController < ApplicationController
   # DELETE /customers/1
   # DELETE /customers/1.json
   def destroy
+    
     @customer = Customer.find(params[:id])
     @customer.destroy
 
     respond_to do |format|
-      format.html { redirect_to customers_url }
-      format.json { head :no_content }
+      format.html { redirect_to user_customers_url(current_user) }
+      format.json do
+        render json: {
+          customer: @customer,
+          status: :deleted
+        }.to_json
+      end
     end
   end
 
