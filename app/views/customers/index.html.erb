@@ -7,9 +7,8 @@
   <section>
     <div class="row-fluid margin-top20">
       <div class="span12 grider">
-        <a href="<%= new_user_customer_path(current_user) %>" class="btn btn-green" style = "margin-bottom: 5px;">
-          <i class="icon-plus"></i>
-          <span>Kunde</span>
+        <a href="<%= new_user_customer_path(current_user) %>" class="btn" style = "margin-bottom: 5px;">
+          <img src="/assets/customer/user_add.png" title="Neuen Kunden hinzufügen">
         </a>
 
         <div class="well well-box well-nice no-border">  
@@ -36,13 +35,13 @@
                   <td><%=customer.password_visible%></td>
                   <td class="action">
                     <a class="icon" href="<%= user_customer_path(@user, customer) %>">
-                      <i class="fugue-magnifier" title="detail"></i>
+                      <i class="fugue-magnifier" title="details"></i>
                     </a> 
                     <a class="icon" href="">
-                      <i class="fugue-pencil" title="edit"></i>
+                      <i class="fugue-pencil" title="bearbeiten"></i>
                     </a>
   
-                    <%= link_to '', user_customer_path(@user, customer, :json), :class =>"fugue-cross-circle", "data-customer-destroy-id" => customer.id, data: { confirm: 'Wollen Sie diesen Kunden löschen?' } %>
+                    <%= link_to '', user_customer_path(@user, customer, :json), :title => "löschen", :class =>"fugue-cross-circle", "data-customer-destroy-id" => customer.id, data: { confirm: 'Wollen Sie diesen Kunden löschen?' } %>
                   </td>
                 </tr>
               <% end %>

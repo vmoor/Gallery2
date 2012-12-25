@@ -7,13 +7,44 @@
   <section>
     <div class="row-fluid margin-top20">
       <div class="span12 grider">
-      	<div class="span9">
+      	<div class="span9 grider">
+            <div class="widget widget-simple">
+                <div class="widget-header">
+                    <h4><i class="fontello-icon-user"></i> Benutzerkonto </h4>
+                </div>
+                <div class="widget-content">
+                    <div class="widget-body">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <div class="control-group no-margin-bootom">
+                                    <label class="control-label label-left"> </label>
+                                    <div class="controls">
+                                        <address>
+                                            <h2><%= @customer.name %></h2>
+                                            <abbr>E-mail:</abbr> <%= @customer.email %><br>
+                                            <abbr>Letzter login am: </abbr> <%= @customer.current_sign_in_at%> <br />
+                                            <abbr>Erstellt am: </abbr> <%= @customer.created_at %>
+                                        </address>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <a href="<%= new_user_customer_album_path(@user, @customer) %>" class="btn" style = "margin-bottom: 5px;">
+              <img src="/assets/album/add_album.png" title="Alben hinzufügen">
+            </a>
 			<div class="widget widget-box widget-recent">
                 <div class="widget-header">
             	    <h4><i class="fontello-icon-picture"></i> Fotoalben <h4>
                 </div>
-                <div class="widget-content">
+                <div class="widget-content albums_widget_content">
                 	<div class="widget-body">
+                        <%if @albums.length == 0 %>
+                            <h5 class="no_albums_text"> Keine Alben vorhanden.</h5>
+                        <% end %>
                 		<% @albums.each do |album| %>
                 			<div class="album_box" id="<%= album.id%>"> 
                                 <div class="album_delete_icon"> 
@@ -35,27 +66,84 @@
             <!-- // Widget -->                       
         </div>
         <!-- // Column --> 
-        <div class="span3">
-			<div class="widget widget-box widget-recent">
+        <div class="span3 grider">
+            <div class="widget widget-simple widget-notes">
                 <div class="widget-header">
-            	    <h4><i class="fontello-icon-user"></i>Recent Article <small>Custom thumb size</small></h4>
+                    <h4><i class="fontello-icon-edit"></i> Notizen</h4>
+                    <div class="widget-tool">
+                        <a href="javascript:void(0);" class="btn btn-green btn-small btn-glyph"> Alle anzeigen</a>
+                    </div>
                 </div>
                 <div class="widget-content">
-                	<div class="widget-body">
-                        <ul class="widget-list">
-                            <li class="media">
-                                <%= link_to image_tag "album_icon.png"%>
+                    <div class="widget-body">
+                        <form class="form-dark" id="formNotes">
+                            <fieldset>
+                                <label class="control-label" for="accountTaxVat"> Titel</label>
+                                <input type="text" class="input-block-level" id="accountTaxVat">
+                                <label for="accountNotes">Text:</label>
+                                <textarea rows="4" class="input-block-level" id="accountNotes"></textarea>
+                            </fieldset>
+                            <!-- // fieldset Input -->
+                                            
+                            <button class="btn btn-yellow btn-block">Speichern</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="widget-header">
+                    <h4><i class="fontello-icon-list-alt"></i> Letzte Notizen </h4>
+                </div>
+                <div class="widget-content">
+                    <div class="widget-body">
+                        <ol class="widget-list list-dotted">
+                            <li class="media"> 
+                                <span class="pull-left">
+                                    <span class="item-icon fontello-icon-pin-1"></span>
+                                </span>
+                                <div class="media-body"> 
+                                    <span class="date">10:30 AM</span> 
+                                    <span class="quick-menu-icon pull-right"> 
+                                        <a class="edit fontello-icon-edit"></a> 
+                                        <a class="state fontello-icon-archive"></a> 
+                                        <a class="state fontello-icon-trash-1"></a> 
+                                    </span>
+                                    <p class="note">Pellentesque malesuada nulla nunc nunc facilisi Donec tellus nec Donec et. Pellentesque metus dolor neque consequat scelerisque.</p>
+                                </div>
                             </li>
-                            <li class="media">
-                    		    <%= link_to image_tag "album_icon.png"%>
+                            <li class="media"> 
+                                <span class="pull-left">
+                                    <span class="item-icon fontello-icon-pin-1"></span>
+                                </span>
+                                <div class="media-body"> 
+                                    <span class="date">09-09-2012 02:30 PM</span> 
+                                    <span class="quick-menu-icon pull-right"> 
+                                        <a class="edit fontello-icon-edit"></a> 
+                                        <a class="state fontello-icon-archive"></a> 
+                                        <a class="state fontello-icon-trash-1"></a> 
+                                    </span>
+                                    
+                                    <p class="note">Pellentesque malesuada nulla nunc nunc facilisi Donec tellus nec Donec et. Pellentesque metus dolor neque consequat scelerisque.</p>
+                                </div>
                             </li>
-                        </ul>
+                            <li class="media"> 
+                                <span class="pull-left">
+                                    <span class="item-icon fontello-icon-pin-1"></span>
+                                </span>
+                                <div class="media-body"> 
+                                    <span class="date">08-15-2012 11:50 AM</span> 
+                                    <span class="quick-menu-icon pull-right"> 
+                                        <a class="edit fontello-icon-edit"></a> 
+                                        <a class="state fontello-icon-archive"></a> 
+                                        <a class="state fontello-icon-trash-1"></a> 
+                                    </span>
+                                    <p class="note">Pellentesque malesuada nulla nunc nunc facilisi Donec tellus nec Donec et. Pellentesque metus dolor neque consequat scelerisque.</p>
+                                </div>
+                            </li>
+                        </ol>
                     </div>
                 </div>
             </div>
-            <!-- // Widget -->                       
+            <!-- // Widget -->                    
         </div>
-        <!-- // Column --> 
       </div>
     </div>
     <!-- // Example row --> 

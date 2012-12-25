@@ -20,9 +20,21 @@
 .album_box {
 	width: 150px;
 	display: inline-block;
+	vertical-align: middle;
 
 }
 
 .album_box:hover {
 	background: #BBBBBB;
+}
+
+
+.albums_widget_content {
+	min-height: 180px;
+}
+
+.no_albums_text {
+	text-align: center; 
+	vertical-align: middle; 
+	margin-top: 70px;
 }
