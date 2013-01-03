@@ -1,56 +1,78 @@
 <div class="row-fluid page-head">
-  <h2 class="page-title"><i class="fontello-icon-camera-alt"></i> Fotogallery </h2>
+  <h2 class="page-title"><i class="fontello-icon-camera-alt"></i> Fotogallery <small><%= @album.title %></small></h2>
 
 </div>
 <!-- // page head -->
   <%= form_for [@user, @customer, @album, @album.photos.build], :html => { :multipart => true, :id => "fileupload"  } do |f| %>
       <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
        <div class="container-fluid">
+<!--
         <div class="row-fluid">
           <div class="span6 offset1">
             <h2>Upload file</h2>
           </div>
         </div>
+-->
 
-        <div class="row-fluid fileupload-buttonbar">
-            <div class="span6 offset1">
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-success fileinput-button">
-                    <i class="icon-plus icon-white"></i>
-                    <span>Add files...</span>
-                    <%= f.file_field :photo, multiple: true, name: "photo[image]"%>
-                </span>
-<!--                <button type="submit" class="btn btn-primary start">
-                    <i class="icon-upload icon-white"></i>
-                    <span>Start upload</span>
-                </button>
-                <button type="reset" class="btn btn-warning cancel">
-                    <i class="icon-ban-circle icon-white"></i>
-                    <span>Cancel upload</span>
-                </button>
- -->               <button type="button" class="btn btn-danger delete">
-                    <i class="icon-trash icon-white"></i>
-                    <span>Delete</span>
-                </button>
-                <input type="checkbox" class="toggle">
-            </div>
-            <div class="span3">
-                <!-- The global progress bar -->
-                <div id="progress-all" class="progress progress-success progress-striped active">
-                    <div class="bar" style="width:0%;"></div>
+        <div class="widget widget-simple" style="margin-top: 30px; margin-bottom: 10px">
+<!--
+          <div class="widget-header">
+            <h4><i class="fontello-icon-user"></i> Benutzerkonto </h4>
+          </div>
+-->
+          <div class="widget-content">
+            <div class="widget-body">
+                <div class="row-fluid fileupload-buttonbar">
+                  <div class="span6">
+                      <!-- The fileinput-button span is used to style the file input field as button -->
+                      <span class="btn fileinput-button" title="Bilder hinzufügen">
+                          <img src="/assets/album/image_add.png">
+                          <%= f.file_field :photo, multiple: true, name: "photo[image]"%>
+                      </span>
+      <!--                <button type="submit" class="btn btn-primary start">
+                          <i class="icon-upload icon-white"></i>
+                          <span>Start upload</span>
+                      </button>
+                      <button type="reset" class="btn btn-warning cancel">
+                          <i class="icon-ban-circle icon-white"></i>
+                          <span>Cancel upload</span>
+                      </button>
+       -->            <button type="button" class="btn delete" title="Ausgewählte Bilder löschen">
+                        <img src="/assets/album/image_remove.png">
+                      </button>
+                      <input type="checkbox" class="toggle">Alle auswählen </input>
+                  </div>
+                  <div class="span3">
+                      <!-- The global progress bar -->
+                      <div id="progress-all" class="progress progress-success progress-striped active">
+                          <div class="bar" style="width:0%;"></div>
+                      </div>
+                      <!-- The loading indicator is shown during image processing -->
+                      <div class="fileupload-loading"></div>
+                  </div>
                 </div>
-                <!-- The loading indicator is shown during image processing -->
-                <div class="fileupload-loading"></div>
+
             </div>
+          </div>
         </div>
 
-        <!-- The table listing the files available for upload/download -->
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></div>
+        <div class="widget widget-box widget-recent">
+          <div class="widget-header">
+            <h4><i class="fontello-icon-picture"></i> Fotos <h4>
+          </div>
+          <div class="widget-content albums_widget_content">
+            <div class="widget-body" style="margin: 10px; text-align: center">
+              <!-- The table listing the files available for upload/download -->
+                <div class="row-fluid">
+                    <div class="span12" >dd
+                        <div class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></div>
+                    </div>
+                </div>
             </div>
+          </div>
         </div>
-      </div>
+            <!-- // Widget -->   
+
   <% end %>
 
 

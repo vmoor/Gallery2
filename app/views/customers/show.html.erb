@@ -33,9 +33,31 @@
                     </div>
                 </div>
             </div>
-            <a href="<%= new_user_customer_album_path(@user, @customer) %>" class="btn" style = "margin-bottom: 5px;">
-              <img src="/assets/album/add_album.png" title="Alben hinzufügen">
-            </a>
+
+
+            <div class="widget widget-simple" style="margin-top: 20px; margin-bottom: 10px">
+<!--
+                <div class="widget-header">
+                    <h4><i class="fontello-icon-user"></i> Benutzerkonto </h4>
+                </div>
+-->
+                <div class="widget-content">
+                    <div class="widget-body">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <a href="<%= new_user_customer_album_path(@user, @customer) %>" class="btn" style = "margin-bottom: 5px;">
+                                  <img src="/assets/album/add_album.png" title="Alben hinzufügen">
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
 			<div class="widget widget-box widget-recent">
                 <div class="widget-header">
             	    <h4><i class="fontello-icon-picture"></i> Fotoalben <h4>
