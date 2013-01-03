@@ -1,10 +1,10 @@
-<div class="row-fluid page-head">
+<!--<div class="row-fluid page-head">
   <h2 class="page-title"><i class="fontello-icon-user-1"></i><%= @customer.name %></h2>
-</div>
+</div>-->
 <!-- // page head -->
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p> -->
 <div id="page-content" class="page-content">
-  <section>
+<!--  <section> -->
     <div class="row-fluid margin-top20">
       <div class="span12 grider">
       	<div class="span9 grider">
@@ -47,13 +47,16 @@
                         <% end %>
                 		<% @albums.each do |album| %>
                 			<div class="album_box" id="<%= album.id%>"> 
-                                <div class="album_delete_icon"> 
+                                
+                                <div class="album-icon">
+                    				<a href="<%= user_customer_album_path(@user, @customer, album) %>">
+                    					<img src="/assets/album/album_icon.png">
+                    				</a>
+                                </div>
+                                <div class="album_delete_icon" title="Alben löschen"> 
                                     <%= link_to image_tag("/assets/album/delete_icon.png", :border=>0), user_customer_album_path(@user, @customer, album), method: :delete, data: { confirm: 'Are you sure?' }  %>
                                     
                                 </div>
-                				<a href="<%= user_customer_album_path(@user, @customer, album) %>">
-                					<img src="/assets/album/album_icon.png">
-                				</a>
                 				<div class="fotoalbum_titel">
                 					<%= album.title %> <br />
                 					(<%= album.photos.length%> Fotos)
@@ -147,7 +150,7 @@
       </div>
     </div>
     <!-- // Example row --> 
-  </section>
+ <!-- </section> -->
 </div>
 <!-- // page content --> 
 

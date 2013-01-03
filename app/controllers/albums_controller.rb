@@ -55,7 +55,7 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to user_customer_album_path(@user, @customer, @album), notice: 'Album was successfully created.' }
+        format.html { redirect_to user_customer_path(@user, @customer), notice: 'Album was successfully created.' }
         format.json { render json: @album, status: :created, location: @album }
       else
         format.html { render action: "new" }
@@ -91,7 +91,7 @@ class AlbumsController < ApplicationController
     @album.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_customer_albums_path(@user, @customer) }
+      format.html { redirect_to user_customer_path(@user, @customer) }
       format.json { head :no_content }
     end
   end
