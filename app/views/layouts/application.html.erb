@@ -21,12 +21,15 @@
               <a class="brand" href="javascript:void(0);">
                 <img src="/assets/demo/logo-brand.png">
               </a>
+
+              <!--
               <div class="search-global">
                 <input id="globalSearch" class="search search-query input-medium" type="search">
                 <a class="search-button" href="javascript:void(0);">
                   <i class="fontello-icon-search-5"></i>
                 </a> 
               </div>
+            -->
               <div class="nav-collapse collapse">
                 <ul class="nav user-menu visible-desktop">
                   <li>
@@ -48,27 +51,15 @@
                   <li> 
                     <a href="<%= dashboard_user_path(current_user) %>">Dashboard</a> 
                   </li>
-                  <li> 
-                    <a href="javascript:void(0);">Components</a> 
-                  </li>
-                  <li> 
-                    <a href="component-fullcalendar-demo.html">
-                      <span class="fontello-icon-calendar"></span>Calenda
-                    </a> 
-                  </li>
-                  <li> 
-                    <a href="javascript:void(0);">
-                      <span class="fontello-icon-users"></span>Contacts
-                    </a> 
-                  </li>
                   <li class="dropdown"> 
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                      <span class="fontello-icon-list-1"></span>Customize <b class="caret"></b>
+                      <span class="fontello-icon-list-1"></span>Kunden <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <a href="component-form-demo.html">Demo Form</a>
+                        <a href="<%= user_customers_path(current_user) %>">Kundenliste</a>
                       </li>
+                      <!--
                       <li>
                         <a href="component-widgets-remember.html">Remember</a>
                       </li>
@@ -83,8 +74,21 @@
                       <li>
                         <a href="javascript:void(0);">Email</a>
                       </li>
+                    -->
                     </ul>
                   </li>
+                  <!--
+                  <li> 
+                    <a href="component-fullcalendar-demo.html">
+                      <span class="fontello-icon-calendar"></span>Calendar
+                    </a> 
+                  </li>
+                  <li> 
+                    <a href="javascript:void(0);">
+                      <span class="fontello-icon-users"></span>Contacts
+                    </a> 
+                  </li>
+                  -->
                 </ul>
               </div>
             </div>
@@ -141,11 +145,8 @@
             
             <ul id="mainSideMenu" class="nav nav-list nav-side">
                 <li class="accordion-group">
-                    <div class="accordion-heading active"> <a href="#accDash" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon fontello-icon-monitor"></span> <i class="chevron fontello-icon-right-open-3"></i> Dashboards </a> </div>
-                    <ul class="accordion-content nav nav-list collapse in" id="accDash">
-                        <li> <a href="<%= dashboard_user_path(current_user) %>"> <i class="fontello-icon-right-dir"></i> Dashboard </a> </li>
-                  
-                    </ul>
+                    <div class="accordion-heading"> <a href="<%= dashboard_user_path(current_user) %>" data-parent="#mainSideMenu" class="accordion-toggle"> <span class="item-icon fontello-icon-monitor"></span> <i class="chevron fontello-icon-right-open-3"></i> Dashboard </a> </div>
+                    
                 </li>
                 <!-- // item accordionMenu Dashboard -->
                 <li class="accordion-group">
