@@ -10,7 +10,7 @@
       	<div class="span9 grider">
             <div class="widget widget-simple">
                 <div class="widget-header">
-                    <h4><i class="fontello-icon-user"></i> Kunde </h4>
+                    <h4><i class="fontello-icon-user"></i> Benutzerkonto </h4>
                 </div>
                 <div class="widget-content">
                     <div class="widget-body">
@@ -42,16 +42,27 @@
                 </div>
 -->
                 <div class="widget-content">
-                    <div class="widget-body">
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <a href="<%= new_user_customer_album_path(@user, @customer) %>" class="btn" style = "margin-bottom: 5px;">
-                                  <img src="/assets/album/add_album.png" title="Alben hinzufügen">
-                                </a>
+                  <div class="widget-body">
+                    <div class="row-fluid">
+                      <div class="span12">
+                        <a href="#" class="btn" style = "margin-bottom: 5px;" data-toggle="collapse" data-target="#new_album_field">
+                          <img src="/assets/album/add_album.png" title="Alben hinzufügen">
+                        </a>
+                        <div id="new_album_field" class="collapse">
+                          <%= form_for [@user, @customer, @album] do |f| %>
+                            <div class="control-group" id="new_album_titel_field_div">
+                              <%= f.label "Titel" %>
+                              <%= f.text_field :title, :placeholder => "Geben Sie einen Titel ein", :id => "new_album_titel_field" %>
                             </div>
-                        </div>
+                            <div class="actions">
+                              <%= f.submit "Speichern", :class => "btn btn-green", :id => "new_album_save_btn" %>
+                            </div>
+                          <% end %>
 
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
 
@@ -177,6 +188,21 @@
 <!-- // page content --> 
 
 
+<script type="text/javascript">
+  jQuery(function($){
+    $('#new_album_titel_field').val("");
+
+    $('#new_album_save_btn').live('click', function(){
+      if ($('#new_album_titel_field').val() == ""){
+        $('#new_album_titel_field_div').addClass("error");
+        $('#new_album_titel_field_div').append('<span class="help-inline">Titel darf nicht leer sein!</span>');
+        return false;
+      }
+      
+    });
+
+  });
+</script>
 
 
 

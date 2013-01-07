@@ -7,6 +7,7 @@ class CustomersController < ApplicationController
     @user = current_user
     @customers = @user.customers
 
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @customers }
@@ -18,6 +19,7 @@ class CustomersController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @customer = @user.customers.find(params[:id])
+    @album = Album.new
     @albums = @customer.albums
     
     respond_to do |format|

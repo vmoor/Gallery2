@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 #load 'deploy/assets'
 
-set :rvm_ruby_string, '1.9.3p327'
+set :rvm_ruby_string, '1.9.3p194'
 set :rvm_type, :system
 
 #require "rvm/capistrano"  # Load RVM's capistrano plugin.
@@ -11,13 +11,13 @@ set :repository,  "git://github.com/vmoor/Gallery2.git"
 set :scm, :git # You can set :scm explicitly or Capistrano will make an intelligent guess based on known version control directory names
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-role :web, "ec2-50-16-20-243.compute-1.amazonaws.com"                          # Your HTTP server, Apache/etc
-role :app, "ec2-50-16-20-243.compute-1.amazonaws.com"                          # This may be the same as your `Web` server
-role :db,  "ec2-50-16-20-243.compute-1.amazonaws.com", :primary => true # This is where Rails migrations will run
+role :web, "vovande.no-ip.org"                          # Your HTTP server, Apache/etc
+role :app, "vovande.no-ip.org"                          # This may be the same as your `Web` server
+role :db,  "vovande.no-ip.org", :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
-set :user, "ubuntu"
-set :deploy_to, "/home/ubuntu/webapps/#{application}"
+set :user, "pi"
+set :deploy_to, "/home/pi/www/apps/#{application}"
 
 set :use_sudo, false
 set :keep_releases, 5

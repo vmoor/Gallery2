@@ -7,9 +7,43 @@
   <section>
     <div class="row-fluid margin-top20">
       <div class="span12 grider">
-        <a href="<%= new_user_customer_path(current_user) %>" class="btn" style = "margin-bottom: 5px;">
-          <img src="/assets/customer/user_add.png" title="Neuen Kunden hinzufügen">
-        </a>
+        
+        
+
+        <div style="margin-top: 20px; margin-bottom: 10px" class="widget widget-simple">
+<!--
+          <div class="widget-header">
+            <h4><i class="fontello-icon-user"></i> Benutzerkonto </h4>
+          </div>
+-->
+          <div class="widget-content">
+            <div class="widget-body">
+              <div class="row-fluid">
+                <div class="span12">
+                  <a href="#" class="btn" style = "margin-bottom: 5px;" data-toggle="collapse" data-target="#new_customer_field">
+                    <img src="/assets/customer/user_add.png" title="Neuen Kunden hinzufügen">
+                  </a>
+                  <div id="new_customer_field" class="collapse"> 
+
+                      <%= form_for Customer.new, :url => { :action => "create" } do |f| %>
+                        <div class="control-group" id ="new_customer_name_field_div">
+                          <%= f.label :name %>
+                          <%= f.text_field :name, :id => "new_customer_name_field" %>
+                        </div>
+                        <div class="field">
+                          <%= f.label :email %>
+                          <%= f.text_field :email %>
+                        </div>
+                        <div class="actions">
+                          <%= f.submit "Speichern", :class => "btn btn-green", :id => "new_customer_save_btn"%>
+                        </div>
+                      <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="well well-box well-nice no-border">  
 
@@ -90,6 +124,19 @@
       }
       console.log(data);
     }
+
+
+
+
+    $('#new_customer_save_btn').live('click', function(){
+      if ($('#new_customer_name_field').val() == ""){
+        $('#new_customer_name_field_div').addClass("error");
+        $('#new_customer_name_field_div').append('<span class="help-inline">Name darf nicht leer sein!</span>');
+        return false;
+      }
+      
+    });
+
   </script>
 
 

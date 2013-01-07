@@ -7,13 +7,11 @@
     <th></th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @albums.each do |album| %>
   <tr>
     <td><%= album.title %></td>
-    <td><%= album.cover %></td>
     <td><%= link_to 'Photos', user_customer_album_photos_path(@user, @customer, album) %></td>
     <td><%= link_to 'Show', user_customer_album_path(@user, @customer, album), :class => 'btn btn-mini btn-primary' %></td>
     <td><%= link_to 'Edit', edit_user_customer_album_path(@user,@customer, album) %></td>
