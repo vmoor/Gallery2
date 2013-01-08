@@ -27,9 +27,9 @@
                       <!-- The fileinput-button span is used to style the file input field as button -->
                       <span class="btn fileinput-button" title="Bilder hinzufügen">
                           <img src="/assets/album/image_add.png">
-                          <%= f.file_field :photo, multiple: true, name: "photo[image]"%>
+                          <%= f.file_field :photo, multiple: true, name: "photo[image]", :id => "files-to-upload-field"%>
                       </span>
-      <!--                <button type="submit" class="btn btn-primary start">
+            <!--      <button type="submit" class="btn btn-primary start">
                           <i class="icon-upload icon-white"></i>
                           <span>Start upload</span>
                       </button>
@@ -42,11 +42,14 @@
                       </button>
                       <input type="checkbox" class="toggle">Alle auswählen </input>
                   </div>
-                  <div class="span3">
+                  <div class="span5 hide" id="file-upload-infos">
                       <!-- The global progress bar -->
-                      <div id="progress-all" class="progress progress-success progress-striped active">
+                      <div id="file-upload-infos-titel"></div>
+                      <div id="progress-all" class="progress progress-success progress-striped ">
                           <div class="bar" style="width:0%;"></div>
                       </div>
+                      <div id="file-upload-infos-up"></div>
+                      <div id="file-upload-infos-down"></div>
                       <!-- The loading indicator is shown during image processing -->
                       <div class="fileupload-loading"></div>
                   </div>

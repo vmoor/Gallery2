@@ -1,5 +1,17 @@
-$(function () {
+jQuery(function ($) {
         // Initialize the jQuery File Upload widget:
+        var fotos_up_Count = 0;
+        var files_to_Upload = 0;
+        var fotos_down_Count = 0;
+
+        $('#files-to-upload-field').change(function () {
+            files_to_Upload = this.files.length;
+            fotos_up_Count = 0;
+            fotos_down_Count = 0;
+            $('#file-upload-infos').removeClass('hide');
+
+        });
+
         $('#fileupload').fileupload({
             autoUpload: true,
             sequentialUploads: true,
@@ -9,14 +21,19 @@ $(function () {
             previewMaxHeight: 150,
             previewAsCanvas: false,
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+
             progressall: function (e, data) {
+              console.log("All");
+              console.log(data);
+
+         
                 var progress = parseInt(data.loaded / data.total * 100, 10);
 
-                $('#progress-all .bar').css(
+   /*             $('#progress-all .bar').css(
                     'width',
                     progress + '%'
                 );
-                var bitrate = parseInt(data.bitrate / 1024);
+   */             var bitrate = parseInt(data.bitrate / 1024);
                 var bitrate_s = "";
                 if (bitrate > 1024) {
                   bitrate = parseFloat(bitrate / 1024).toFixed(2);
@@ -24,19 +41,26 @@ $(function () {
                 } else {
                   bitrate_s = bitrate + " KiB/s";
                 }
-                console.log(bitrate_s);
+  
+              $('#fileupload-loading').empty();
+              $('#fileupload-loading').append('<p>'+ bitrate_s+' / ' + data.loaded+' von ' +data.total+ ' / ' +progress+'%  fotos: ' +fotosCount+'</p>');
+   
             },
 
-            fileuploadprogress: function (e, data) {
+            completed: function (e, data) {
+              console.log('upload completed');
+            },
+
+            progress: function (e, data) {
             // Log the current bitrate for this upload:
-              console.log(data.total);
+            //  console.log(data);
             },
 
             process: [
               {
                   action: 'load',
                   fileTypes: /^image\/(gif|jpeg|png)$/,
-                  maxFileSize: 15000000 // MB
+                  maxFileSize: 15000000 // 15 MB
               },
               {
                   action: 'resize',
@@ -49,6 +73,17 @@ $(function () {
             uploadTemplateId: null,
             downloadTemplateId: null,
             uploadTemplate: function (o) {
+              fotos_up_Count++;
+
+              $('#file-upload-infos-titel').empty();
+              $('#file-upload-infos-titel').append('<h5> Bilder werden verarbeitet ('+ parseInt((((fotos_up_Count + fotos_down_Count) /(files_to_Upload*2))*100), 10) + '%)</h5>');
+              $('#file-upload-infos-up').empty();
+              $('#file-upload-infos-up').append('<h5>' +fotos_up_Count + ' von ' + files_to_Upload +' wurden verarbeitet</h5>');
+              $('#progress-all .bar').css(
+                    'width',
+                    (((fotos_up_Count + fotos_down_Count) /(files_to_Upload*2))*100) + '%'
+              );
+               
                 var rows = $();
                 $.each(o.files, function (index, file) {
                     var row = $('<div class="template-upload fade">' +
@@ -57,12 +92,12 @@ $(function () {
                         '<div class="progress progress-striped active">' +
                         '<div class="bar" style="width:0%;"></div></div>' +
                         '<div class="name"><span></span></div>' +
- //                       (file.error ? '<div class="error label label-important"></div>' :
- //                               '</div><div class="buttons"><div class="start">' +
- //                                   (!o.options.autoUpload ? '<button> <i class="icon-upload icon-white"></i><span>'+
- //                                     locale.fileupload.start +'</span></button>' : '<div></div>' ) + '</div>'
- //                       ) + '<div class="cancel"><button><i class="icon-ban-circle icon-white"></i>'+
- //                       locale.fileupload.cancel +'</button></div>
+                        (file.error ? '<div class="error label label-important"></div>' :
+                                '</div><div class="buttons"><div class="start">' +
+                                    (!o.options.autoUpload ? '<button> <i class="icon-upload icon-white"></i><span>'+
+                                      locale.fileupload.start +'</span></button>' : '<div></div>' ) + '</div>'
+                        ) + '<div class="cancel"><button class="btn btn-orange"><i class="icon-ban-circle icon-white"></i>'+
+                        locale.fileupload.cancel +'</button></div>'+
                           '</div></div></div></div>');
                     row.find('.name').text(file.name);
 //                    row.find('.size').text(o.formatFileSize(file.size));
@@ -76,8 +111,29 @@ $(function () {
                 return rows;
             },
             downloadTemplate: function (o) {
-            var rows = $();
-            $.each(o.files, function (index, file) {
+              fotos_down_Count++;
+
+              $('#file-upload-infos-titel').empty();
+              $('#file-upload-infos-titel').append('<h5> Bilder werden verarbeitet ('+ parseInt((((fotos_up_Count + fotos_down_Count) /(files_to_Upload*2))*100), 10) + '%)</h5>');
+             
+              $('#file-upload-infos-down').empty();
+              $('#file-upload-infos-down').append('<h5>' +fotos_down_Count + ' von ' + files_to_Upload +' wurden hochgeladen</h5>');
+              
+
+              if(fotos_down_Count == files_to_Upload) {
+                $('#file-upload-infos').addClass('hide');
+                $('#file-upload-infos-up').empty();
+                $('#file-upload-infos-down').empty();
+                 $('#file-upload-infos-titel').empty();
+
+                $('#progress-all .bar').css(
+                    'width', '0%'
+              );
+
+              }
+
+              var rows = $();
+              $.each(o.files, function (index, file) {
                 var row = $('<div class="template-download fade">' +
                               '<li class="span3" style="height:200px;">' +
                                 '<div class="thumbnail" style="height:200px;">' +
@@ -119,9 +175,9 @@ $(function () {
                         .attr('data-url', file.delete_url);
                 }
                 rows = rows.add(row);
-            });
-            return rows;
-          }
+              });
+              return rows;
+            }
         });
         //
         // Load existing files:
