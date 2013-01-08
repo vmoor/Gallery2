@@ -106,77 +106,42 @@
             <div class="widget widget-simple widget-notes">
                 <div class="widget-header">
                     <h4><i class="fontello-icon-edit"></i> Notizen</h4>
-                    <div class="widget-tool">
+                  <!--  <div class="widget-tool">
                         <a href="javascript:void(0);" class="btn btn-green btn-small btn-glyph"> Alle anzeigen</a>
                     </div>
+                  -->
                 </div>
                 <div class="widget-content">
                     <div class="widget-body">
-                        <form class="form-dark" id="formNotes">
+                        <%= form_for [@user, @customer, @note], :format => :json,  :html => {:class => "form-dark", :id => "formNotes"} do |f| %>
+                        
                             <fieldset>
                                 <label class="control-label" for="accountTaxVat"> Titel</label>
-                                <input type="text" class="input-block-level" id="accountTaxVat">
+                                <%= f.text_field :title, :class => "input-block-level", :id => "accountTaxVat" %>
                                 <label for="accountNotes">Text:</label>
-                                <textarea rows="4" class="input-block-level" id="accountNotes"></textarea>
+                                <%= f.text_area :text, :class=>"input-block-level", :id=>"accountNotes", :rows=>"4" %>
                             </fieldset>
                             <!-- // fieldset Input -->
                                             
-                            <button class="btn btn-yellow btn-block">Speichern</button>
-                        </form>
+                            <button class="btn btn-yellow btn-block", id="note-save-btn">Speichern</button>
+                       
+                        <% end -%>
                     </div>
                 </div>
-                <div class="widget-header">
-                    <h4><i class="fontello-icon-list-alt"></i> Letzte Notizen </h4>
-                </div>
-                <div class="widget-content">
-                    <div class="widget-body">
-                        <ol class="widget-list list-dotted">
-                            <li class="media"> 
-                                <span class="pull-left">
-                                    <span class="item-icon fontello-icon-pin-1"></span>
-                                </span>
-                                <div class="media-body"> 
-                                    <span class="date">10:30 AM</span> 
-                                    <span class="quick-menu-icon pull-right"> 
-                                        <a class="edit fontello-icon-edit"></a> 
-                                        <a class="state fontello-icon-archive"></a> 
-                                        <a class="state fontello-icon-trash-1"></a> 
-                                    </span>
-                                    <p class="note">Pellentesque malesuada nulla nunc nunc facilisi Donec tellus nec Donec et. Pellentesque metus dolor neque consequat scelerisque.</p>
-                                </div>
-                            </li>
-                            <li class="media"> 
-                                <span class="pull-left">
-                                    <span class="item-icon fontello-icon-pin-1"></span>
-                                </span>
-                                <div class="media-body"> 
-                                    <span class="date">09-09-2012 02:30 PM</span> 
-                                    <span class="quick-menu-icon pull-right"> 
-                                        <a class="edit fontello-icon-edit"></a> 
-                                        <a class="state fontello-icon-archive"></a> 
-                                        <a class="state fontello-icon-trash-1"></a> 
-                                    </span>
-                                    
-                                    <p class="note">Pellentesque malesuada nulla nunc nunc facilisi Donec tellus nec Donec et. Pellentesque metus dolor neque consequat scelerisque.</p>
-                                </div>
-                            </li>
-                            <li class="media"> 
-                                <span class="pull-left">
-                                    <span class="item-icon fontello-icon-pin-1"></span>
-                                </span>
-                                <div class="media-body"> 
-                                    <span class="date">08-15-2012 11:50 AM</span> 
-                                    <span class="quick-menu-icon pull-right"> 
-                                        <a class="edit fontello-icon-edit"></a> 
-                                        <a class="state fontello-icon-archive"></a> 
-                                        <a class="state fontello-icon-trash-1"></a> 
-                                    </span>
-                                    <p class="note">Pellentesque malesuada nulla nunc nunc facilisi Donec tellus nec Donec et. Pellentesque metus dolor neque consequat scelerisque.</p>
-                                </div>
-                            </li>
-                        </ol>
-                    </div>
-                </div>
+
+                  <div class="widget-header">
+                      <h4><i class="fontello-icon-list-alt"></i> Letzte Notizen </h4>
+                  </div>
+                  <div class="widget-content">
+                      <div class="widget-body">
+                          <ol class="widget-list list-dotted" data-notes-items-id="1">
+                              <% @notes.each do |note| %>
+                                <%= render '/notes/note_item', note: note %>
+                              <% end %>
+                          </ol>
+                      </div>
+                  </div>
+      
             </div>
             <!-- // Widget -->                    
         </div>
@@ -191,6 +156,8 @@
 <script type="text/javascript">
   jQuery(function($){
     $('#new_album_titel_field').val("");
+    $('#accountTaxVat').val("");
+    $('#accountNotes').val("");
 
     $('#new_album_save_btn').live('click', function(){
       if ($('#new_album_titel_field').val() == ""){
@@ -198,8 +165,47 @@
         $('#new_album_titel_field_div').append('<span class="help-inline">Titel darf nicht leer sein!</span>');
         return false;
       }
-      
     });
+
+    $('form#formNotes').submit(function(){
+      var form = $(this);
+      console.log(form),
+      $.ajax(form.attr('action'), {
+        type: 'post',
+        data: form.serialize(),
+        success: process,
+        error: function(msg){
+          alert("error");
+        }
+      });
+
+      return false;
+    });
+
+    $('a[data-note-remove-btn-id]').live('click', function(){
+      var a = $(this);
+      $.ajax({
+        data: {"_method":"delete"},
+        type: 'post',
+        url: a.attr("href"),
+        success: process,
+        error: function(msg){
+          console.log("error");
+        }
+      });
+      return false;
+    });
+
+    function process(data){
+      console.log(data);
+      if(data.status == "deleted"){
+        $('li[data-media-note-id=' + data.note.id +']').remove();
+      } else if (data.status == "created") {
+        $('#accountTaxVat').val("");
+        $('#accountNotes').val(""); 
+        $('ol[data-notes-items-id]').prepend(data.note_item);
+      }
+    }
 
   });
 </script>

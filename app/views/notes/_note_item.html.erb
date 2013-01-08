@@ -1,0 +1,16 @@
+<li class="media" data-media-note-id="<%= note.id %>"> 
+  <span class="pull-left">
+    <span class="item-icon fontello-icon-pin-1"></span>
+  </span>
+  <div class="media-body"> 
+    <span class="label label-success"><%= note.title %></span><br />
+    <span class="date"><%=note.created_time%></span> 
+    <span class="quick-menu-icon pull-right"> 
+    <!--    <a class="edit fontello-icon-edit"></a> 
+    <a class="state fontello-icon-archive"></a> -->
+
+      <%= link_to "", user_customer_note_path(@user, @customer, note, :json),   "data-note-remove-btn-id " => note.id, :class => 'state fontello-icon-trash-1', :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Sind Sie sicher?'))%>
+     </span>
+     <p class="note"><%= note.text %></p>
+  </div>
+</li>

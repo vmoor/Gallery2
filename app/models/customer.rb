@@ -1,5 +1,6 @@
 class Customer < ActiveRecord::Base
   has_many :albums, dependent: :destroy
+  has_many :notes, dependent: :destroy
   belongs_to :user
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

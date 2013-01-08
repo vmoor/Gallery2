@@ -21,6 +21,8 @@ class CustomersController < ApplicationController
     @customer = @user.customers.find(params[:id])
     @album = Album.new
     @albums = @customer.albums
+    @notes = @customer.notes.order("created_at DESC")
+    @note = Note.new
     
     respond_to do |format|
       format.html # show.html.erb
