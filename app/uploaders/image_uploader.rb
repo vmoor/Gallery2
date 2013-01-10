@@ -35,9 +35,29 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  version :thumb do
+  version :thumb_xsmall do
+    process :resize_to_fit => [140, 105]
+  end
+
+  version :thumb_small do
     process :resize_to_fit => [200, 150]
   end
+
+  version :thumb_medium do
+    process :resize_to_fit => [300, 225]
+  end
+
+  version :thumb_large do
+    process :resize_to_fit => [700, 525]
+  end
+  version :thumb_xlarge do
+    process :resize_to_fit => [1000, 750]
+  end
+  version :thumb_xxlarge do
+    process :resize_to_fit => [1300, 975]
+  end
+
+
 
   # Create different versions of your uploaded files:
   # version :thumb do

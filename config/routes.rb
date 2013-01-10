@@ -17,7 +17,7 @@ Gallery2::Application.routes.draw do
 
   namespace :customer do
     resources :customers, only: [:show] do
-      resources :albums, only: [:index, :show] do
+      resources :albums, only: [:show] do
       end
     end
   end
