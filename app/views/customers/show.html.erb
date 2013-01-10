@@ -5,152 +5,129 @@
 <!--<p id="notice"><%= notice %></p> -->
 <div id="page-content" class="page-content">
 <!--  <section> -->
-    <div class="row-fluid margin-top20">
-      <div class="span12 grider">
-      	<div class="span9 grider">
-            <div class="widget widget-simple">
-                <div class="widget-header">
-                    <h4><i class="fontello-icon-user"></i> Benutzerkonto </h4>
-                </div>
-                <div class="widget-content">
-                    <div class="widget-body">
-                        <div class="row-fluid">
-                            <div class="span12">
-                                <div class="control-group no-margin-bootom">
-                                    <label class="control-label label-left"> </label>
-                                    <div class="controls">
-                                        <address>
-                                            <h2><%= @customer.name %></h2>
-                                            <abbr>E-mail:</abbr> <%= @customer.email %><br>
-                                            <abbr>Letzter login am: </abbr> <%= @customer.current_sign_in_at%> <br />
-                                            <abbr>Erstellt am: </abbr> <%= @customer.created_at %>
-                                        </address>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="widget widget-simple" style="margin-top: 20px; margin-bottom: 10px">
-<!--
-                <div class="widget-header">
-                    <h4><i class="fontello-icon-user"></i> Benutzerkonto </h4>
-                </div>
--->
-                <div class="widget-content">
-                  <div class="widget-body">
-                    <div class="row-fluid">
-                      <div class="span12">
-                        <a href="#" class="btn" style = "margin-bottom: 5px;" data-toggle="collapse" data-target="#new_album_field">
-                          <img src="/assets/album/add_album.png" title="Alben hinzufügen">
-                        </a>
-                        <div id="new_album_field" class="collapse">
-                          <%= form_for [@user, @customer, @album] do |f| %>
-                            <div class="control-group" id="new_album_titel_field_div">
-                              <%= f.label "Titel" %>
-                              <%= f.text_field :title, :placeholder => "Geben Sie einen Titel ein", :id => "new_album_titel_field" %>
-                            </div>
-                            <div class="actions">
-                              <%= f.submit "Speichern", :class => "btn btn-green", :id => "new_album_save_btn" %>
-                            </div>
-                          <% end %>
-
-                        </div>
-                      </div>
+  <div class="row-fluid margin-top20">
+    <div class="span12 grider">
+    	<div class="span9 grider">
+        <div class="widget widget-simple">
+          <div class="widget-header">
+            <h4><i class="fontello-icon-user"></i> Benutzerkonto </h4>
+          </div>
+          <div class="widget-content">
+            <div class="widget-body">
+              <div class="row-fluid">
+                <div class="span12">
+                  <div class="control-group no-margin-bootom">
+                    <label class="control-label label-left"> </label>
+                    <div class="controls">
+                      <address>
+                        <h2><%= @customer.name %></h2>
+                        <abbr>E-mail:</abbr> <%= @customer.email %><br>
+                        <abbr>Letzter login am: </abbr> <%= @customer.current_sign_in_at%> <br />
+                        <abbr>Erstellt am: </abbr> <%= @customer.created_at %>
+                      </address>
                     </div>
                   </div>
                 </div>
+              </div>
             </div>
-
-
-
-
-			<div class="widget widget-box widget-recent">
-                <div class="widget-header">
-            	    <h4><i class="fontello-icon-picture"></i> Fotoalben <h4>
-                </div>
-                <div class="widget-content albums_widget_content">
-                	<div class="widget-body">
-                        <%if @albums.length == 0 %>
-                            <h5 class="no_albums_text"> Keine Alben vorhanden.</h5>
-                        <% end %>
-                		<% @albums.each do |album| %>
-                			<div class="album_box" id="<%= album.id%>"> 
-                                
-                                <div class="album-icon">
-                    				<a href="<%= user_customer_album_path(@user, @customer, album) %>">
-                    					<img src="/assets/album/album_icon.png">
-                    				</a>
-                                </div>
-                                <div class="album_delete_icon" title="Alben löschen"> 
-                                    <%= link_to image_tag("/assets/album/delete_icon.png", :border=>0), user_customer_album_path(@user, @customer, album), method: :delete, data: { confirm: 'Are you sure?' }  %>
-                                    
-                                </div>
-                				<div class="fotoalbum_titel">
-                					<%= album.title %> <br />
-                					(<%= album.photos.length%> Fotos)
-                				</div>
-                   			</div>
-                		<% end %>
-                    </div>
-                </div>
-            </div>
-            <!-- // Widget -->                       
+          </div>
         </div>
-        <!-- // Column --> 
-        <div class="span3 grider">
-            <div class="widget widget-simple widget-notes">
-                <div class="widget-header">
-                    <h4><i class="fontello-icon-edit"></i> Notizen</h4>
-                  <!--  <div class="widget-tool">
-                        <a href="javascript:void(0);" class="btn btn-green btn-small btn-glyph"> Alle anzeigen</a>
-                    </div>
-                  -->
-                </div>
-                <div class="widget-content">
-                    <div class="widget-body">
-                        <%= form_for [@user, @customer, @note], :format => :json,  :html => {:class => "form-dark", :id => "formNotes"} do |f| %>
-                        
-                            <fieldset>
-                                <label class="control-label" for="accountTaxVat"> Titel</label>
-                                <%= f.text_field :title, :class => "input-block-level", :id => "accountTaxVat" %>
-                                <label for="accountNotes">Text:</label>
-                                <%= f.text_area :text, :class=>"input-block-level", :id=>"accountNotes", :rows=>"4" %>
-                            </fieldset>
-                            <!-- // fieldset Input -->
-                                            
-                            <button class="btn btn-yellow btn-block", id="note-save-btn">Speichern</button>
-                       
-                        <% end -%>
-                    </div>
-                </div>
-
-                  <div class="widget-header">
-                      <h4><i class="fontello-icon-list-alt"></i> Letzte Notizen </h4>
-                  </div>
-                  <div class="widget-content">
-                      <div class="widget-body">
-                          <ol class="widget-list list-dotted" data-notes-items-id="1">
-                              <% @notes.each do |note| %>
-                                <%= render '/notes/note_item', note: note %>
-                              <% end %>
-                          </ol>
+        <div class="widget widget-simple" style="margin-top: 20px; margin-bottom: 10px">
+          <div class="widget-content">
+            <div class="widget-body">
+              <div class="row-fluid">
+                <div class="span12">
+                  <a href="#" class="btn" style = "margin-bottom: 5px;" data-toggle="collapse" data-target="#new_album_field">
+                    <img src="/assets/album/add_album.png" title="Alben hinzufügen">
+                  </a>
+                  <div id="new_album_field" class="collapse">
+                    <%= form_for [@user, @customer, @album] do |f| %>
+                      <div class="control-group" id="new_album_titel_field_div">
+                        <%= f.label "Titel" %>
+                        <%= f.text_field :title, :placeholder => "Geben Sie einen Titel ein", :id => "new_album_titel_field" %>
                       </div>
+                      <div class="actions">
+                        <%= f.submit "Speichern", :class => "btn btn-green", :id => "new_album_save_btn" %>
+                      </div>
+                    <% end %>
                   </div>
-      
+                </div>
+              </div>
             </div>
-            <!-- // Widget -->                    
+          </div>
+        </div>
+  			<div class="widget widget-box widget-recent">
+          <div class="widget-header">
+      	    <h4><i class="fontello-icon-picture"></i> Fotoalben <h4>
+          </div>
+          <div class="widget-content albums_widget_content">
+          	<div class="widget-body">
+              <%if @albums.length == 0 %>
+                  <h5 class="no_albums_text"> Keine Alben vorhanden.</h5>
+              <% end %>
+          		<% @albums.each do |album| %>
+          			<div class="album_box" id="<%= album.id%>">
+                  <div class="album-icon">
+              			<a href="<%= user_customer_album_path(@user, @customer, album) %>">
+              				<img src="/assets/album/album_icon.png">
+              			</a>
+                  </div>
+                  <div class="album_delete_icon" title="Alben löschen">
+                    <%= link_to image_tag("/assets/album/delete_icon.png", :border=>0), user_customer_album_path(@user, @customer, album), method: :delete, data: { confirm: 'Are you sure?' }  %>
+
+                  </div>
+          				<div class="fotoalbum_titel">
+          					<%= album.title %> <br />
+          					(<%= album.photos.length%> Fotos)
+          				</div>
+             		</div>
+          		<% end %>
+            </div>
+          </div>
+          <!-- // Widget -->
         </div>
       </div>
+        <!-- // Column -->
+      <div class="span3 grider">
+        <div class="widget widget-simple widget-notes">
+          <div class="widget-header">
+            <h4><i class="fontello-icon-edit"></i> Notizen</h4>
+          </div>
+          <div class="widget-content">
+            <div class="widget-body">
+              <%= form_for [@user, @customer, @note], :format => :json,  :html => {:class => "form-dark", :id => "formNotes"} do |f| %>
+                <fieldset>
+                  <label class="control-label" for="accountTaxVat"> Titel</label>
+                  <%= f.text_field :title, :class => "input-block-level", :id => "accountTaxVat" %>
+                  <label for="accountNotes">Text:</label>
+                  <%= f.text_area :text, :class=>"input-block-level", :id=>"accountNotes", :rows=>"4" %>
+                </fieldset>
+                          <!-- // fieldset Input -->
+                <button class="btn btn-yellow btn-block", id="note-save-btn">Speichern</button>
+              <% end -%>
+            </div>
+          </div>
+          <div class="widget-header">
+            <h4><i class="fontello-icon-list-alt"></i> Letzte Notizen </h4>
+          </div>
+          <div class="widget-content">
+            <div class="widget-body">
+              <ol class="widget-list list-dotted" data-notes-items-id="1">
+                <% @notes.each do |note| %>
+                  <%= render '/notes/note_item', note: note %>
+                <% end %>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- // Widget -->
+      </div>
     </div>
-    <!-- // Example row --> 
- <!-- </section> -->
+  </div>
+  <!-- // Example row -->
+  <!-- </section> -->
 </div>
-<!-- // page content --> 
+<!-- // page content -->
 
 
 <script type="text/javascript">
@@ -202,7 +179,7 @@
         $('li[data-media-note-id=' + data.note.id +']').remove();
       } else if (data.status == "created") {
         $('#accountTaxVat').val("");
-        $('#accountNotes').val(""); 
+        $('#accountNotes').val("");
         $('ol[data-notes-items-id]').prepend(data.note_item);
       }
     }
@@ -214,7 +191,7 @@
 
 
 
-                        
-                      
-                        
-                    
+
+
+
+

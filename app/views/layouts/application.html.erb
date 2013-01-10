@@ -203,15 +203,6 @@
               <a class="brand" href="javascript:void(0);">
                 <img src="/assets/demo/logo-brand.png">
               </a>
-
-              <!--
-              <div class="search-global">
-                <input id="globalSearch" class="search search-query input-medium" type="search">
-                <a class="search-button" href="javascript:void(0);">
-                  <i class="fontello-icon-search-5"></i>
-                </a>
-              </div>
-            -->
               <div class="nav-collapse collapse">
                 <ul class="nav user-menu visible-desktop">
                   <li>
@@ -228,11 +219,13 @@
                       <span class="badge badge-important">4</span>
                     </a>
                   </li>
+                  <li> <%= link_to "Abmelden", destroy_customer_session_path, method: :delete %> </li>
                 </ul>
                 <ul class="nav">
                   <li>
                     <a href="<%#= dashboard_user_path(current_user) %>">Dashboard</a>
                   </li>
+                   <!--
                   <li class="dropdown">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                       <span class="fontello-icon-list-1"></span>Kunden <b class="caret"></b>
@@ -241,7 +234,7 @@
                       <li>
                         <a href="<%#= user_customers_path(current_user) %>">Kundenliste</a>
                       </li>
-                      <!--
+
                       <li>
                         <a href="component-widgets-remember.html">Remember</a>
                       </li>
@@ -256,10 +249,10 @@
                       <li>
                         <a href="javascript:void(0);">Email</a>
                       </li>
-                    -->
+
                     </ul>
                   </li>
-                  <!--
+
                   <li>
                     <a href="component-fullcalendar-demo.html">
                       <span class="fontello-icon-calendar"></span>Calendar
@@ -277,97 +270,15 @@
           </div>
         </div>
         <!-- // navbar -->
-
-        <div class="header-drawer">
-            <div class="mobile-nav text-center visible-phone">
-              <a href="javascript:void(0);" class="mobile-btn" data-toggle="collapse" data-target=".sidebar">
-                <i class="aweso-icon-chevron-down"></i> Components
-              </a>
-            </div>
-            <!-- // Resposive navigation -->
-            <div class="breadcrumbs-nav hidden-phone">
-              <ul id="breadcrumbs" class="breadcrumb">
-                <li>
-                  <a href="javascript:void(0);"><i class="fontello-icon-home f12"></i> Dashboard
-                  </a>
-                  <span class="divider">/</span>
-                </li>
-                <li class="dropdown">
-                  <a href="javascript:void(0);">Table </a>
-                  <span class="divider">/</span>
-                  <ul class="dropdown-menu">
-                    <li><a href="javascript:void(0);">Table</a></li>
-                    <li><a href="javascript:void(0);">Elements</a></li>
-                    <li><a href="javascript:void(0);">Elements</a></li>
-                    <li><a href="javascript:void(0);">Elements</a></li>
-                  </ul>
-                </li>
-                <li class="active">Boo Admin </li>
-              </ul>
-            </div>
-            <!-- // breadcrumbs -->
-        </div>
-        <!-- // drawer -->
       </div>
     </div>
     <!-- // header-container -->
     <div id="main-container">
-        <div id="main-sidebar" class="sidebar sidebar-inverse">
-            <div class="sidebar-item">
-                <div class="media profile">
-                    <div class="media-thumb media-left thumb-bordereb"> <a class="img-shadow" href="javascript:void(0);"><img class="thumb" src="/assets/user/user_male.png"></a> </div>
-                    <div class="media-body">
-                        <h5 class="media-heading"><%#= current_user.email %></h5>
-                        <p class="data">Letzter Login: <%#= current_user.current_sign_in_at %><br />
-                        <%= link_to "Abmelden", destroy_customer_session_path, method: :delete %> </p>
-                    </div>
-                </div>
-            </div>
-            <!-- // sidebar item - profile -->
-
-            <ul id="mainSideMenu" class="nav nav-list nav-side">
-                <li class="accordion-group">
-                    <div class="accordion-heading"> <a href="<%#= dashboard_user_path(current_user) %>" data-parent="#mainSideMenu" class="accordion-toggle"> <span class="item-icon fontello-icon-monitor"></span> <i class="chevron fontello-icon-right-open-3"></i> Dashboard </a> </div>
-
-                </li>
-                <!-- // item accordionMenu Dashboard -->
-                <li class="accordion-group">
-                    <div class="accordion-heading">
-                      <a href="#accCustomer" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle">
-                        <span class="item-icon aweso-icon-list-alt"></span>
-                        <i class="chevron fontello-icon-right-open-3"></i> Kunden
-                      </a>
-                    </div>
-                    <ul class="accordion-content nav nav-list collapse" id="accCustomer">
-                        <li>
-                          <a href="<%#= user_customers_path(current_user) %>">
-                            <i class="fontello-icon-right-dir"></i> Kundenliste
-                          </a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- // item accordionMenu UI Elements -->
-                <li class="accordion-group">
-                    <div class="accordion-heading"> <a href="#accCalendar" data-parent="#mainSideMenu" data-toggle="collapse" class="accordion-toggle"> <span class="item-icon fontello-icon-calendar"></span> <i class="chevron fontello-icon-right-open-3"></i> Calendar </a> </div>
-                    <ul class="accordion-content nav nav-list collapse" id="accCalendar">
-                        <li> <a href="component-fullcalendar-demo.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Calendar </span> Demo </a> </li>
-                        <li> <a href="component-fullcalendar.html"> <i class="fontello-icon-right-dir"></i> <span class="hidden-tablet">Calendar </span> Style </a> </li>
-                    </ul>
-                </li>
-                <!-- // item accordionMenu Calendar -->
-            </ul>
-            <!-- // sidebar menu -->
-
-            <div class="sidebar-item"></div>
-            <!-- // sidebar item -->
-
-        </div>
-        <!-- // sidebar -->
-         <div id="main-content" class="main-content container-fluid">
-          <%= yield %>
-        </div>
-        <!-- // main-content -->
+      <div id="main-content" class="main-content container-fluid">
+        <%= yield %>
       </div>
+      <!-- // main-content -->
+    </div>
       <!-- // main-container  -->
   </div>
   <!-- // page-container  -->

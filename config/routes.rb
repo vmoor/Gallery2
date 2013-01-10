@@ -1,8 +1,5 @@
 Gallery2::Application.routes.draw do
 
-
-
-
   devise_for :customers, :path => "customer",
                          :path_names => { :sign_in => 'login',
                                           :sign_out => 'logout'}
@@ -20,6 +17,8 @@ Gallery2::Application.routes.draw do
 
   namespace :customer do
     resources :customers, only: [:show] do
+      resources :albums, only: [:index, :show] do
+      end
     end
   end
 

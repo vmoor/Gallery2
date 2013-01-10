@@ -1,1 +1,30 @@
-hallo
+<div class="widget widget-box widget-recent">
+  <div class="widget-header">
+    <h4><i class="fontello-icon-picture"></i> Fotoalben <h4>
+  </div>
+  <div class="widget-content albums_widget_content">
+    <div class="widget-body">
+      <%if @albums.length == 0 %>
+          <h5 class="no_albums_text"> Keine Alben vorhanden.</h5>
+      <% end %>
+      <% @albums.each do |album| %>
+        <div class="album_box" id="<%= album.id%>">
+          <div class="album-icon">
+            <a href="<%= customer_customer_album_path(@customer, album) %>">
+              <img src="/assets/album/album_icon.png">
+            </a>
+          </div>
+          <div class="album_delete_icon" title="Alben löschen">
+            <%#= link_to image_tag("/assets/album/delete_icon.png", :border=>0), user_customer_album_path(@user, @customer, album), method: :delete, data: { confirm: 'Are you sure?' }  %>
+
+          </div>
+          <div class="fotoalbum_titel">
+            <%= album.title %> <br />
+            (<%= album.photos.length%> Fotos)
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <!-- // Widget -->
+</div>
