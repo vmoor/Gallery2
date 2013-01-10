@@ -1,28 +1,33 @@
 Gallery2::Application.routes.draw do
 
- 
 
 
-  devise_for :customers, :path => "customer", 
+
+  devise_for :customers, :path => "customer",
                          :path_names => { :sign_in => 'login',
-                                          :sign_out => 'logout'}                                                                  
+                                          :sign_out => 'logout'}
 
-  devise_for :users, :path => "/user", 
+  devise_for :users, :path => "/user",
                       :path_names => { :sign_in => 'login',
-                                       :sign_out => 'logout', 
-                                       :password => 'secret', 
-                                       :confirmation => 'verification', 
-                                       :unlock => 'unblock', 
-                                       :registration => 'register', 
+                                       :sign_out => 'logout',
+                                       :password => 'secret',
+                                       :confirmation => 'verification',
+                                       :unlock => 'unblock',
+                                       :registration => 'register',
                                        :sign_up => 'signup' }
 
 
+
+  namespace :customer do
+    resources :customers, only: [:show] do
+    end
+  end
 
 resources :users, :except => [:index] do
   member do
     get :dashboard
   end
-  resources :customers do 
+  resources :customers do
     resources :notes
     resources :albums do
       resources :photos, :only => [:index, :create, :destroy]

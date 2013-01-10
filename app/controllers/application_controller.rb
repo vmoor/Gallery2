@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 		dashboard_user_path(current_user)
   	elsif (current_customer)
  #     raise current_customer.inspect
-  		user_customer_path(current_customer.user_id, current_customer)
+  		customer_customer_path(current_customer)
   	else
 
     end

@@ -1,34 +1,33 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	<div class="form-horizontal well well-nice customer-login-window" >
+	  <h4 class="simple-header">Kundenbereich</h4>
+	  <div class="control-group">
+	    <label class="control-label" for="inputEmail">Login</label>
+	    <div class="controls">
+	    	<%= f.text_field :login, :id=>"inputEmail", :placeholder=>"Username" %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <label class="control-label" for="inputPassword">Password</label>
+	    <div class="controls">
+	    	<%= f.password_field :password, :id=>"inputPassword", :placeholder=>"Password" %>
+	    </div>
+	  </div>
+	  <div class="control-group">
+	    <div class="controls">
+	    	<% if devise_mapping.rememberable? -%>
+		      <label class="checkbox">
+		        <input type="checkbox">
+		        Remember me
+		      </label>
+		    <% end %>
+		    <%= f.submit "Login", :class=> "btn" %>
+		    <%= render "customers/shared/links" %>
+	    </div>
+	  </div>
+	</div>
+<% end %>
 
-			<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-				<div class="form-horizontal well well-nice customer-login-window" >
-				  <h4 class="simple-header">Kundenbereich</h4>
-				  <div class="control-group">
-				    <label class="control-label" for="inputEmail">Login</label>
-				    <div class="controls">
-				    	<%= f.text_field :login, :id=>"inputEmail", :placeholder=>"Username" %>
-				    </div>
-				  </div>
-				  <div class="control-group">
-				    <label class="control-label" for="inputPassword">Password</label>
-				    <div class="controls">
-				    	<%= f.password_field :password, :id=>"inputPassword", :placeholder=>"Password" %>
-				    </div>
-				  </div>
-				  <div class="control-group">
-				    <div class="controls">
-				    	<% if devise_mapping.rememberable? -%>
-					      <label class="checkbox">
-					        <input type="checkbox">
-					        Remember me 
-					      </label>
-					    <% end %>
-					    <%= f.submit "Login", :class=> "btn" %>
-					    <%= render "customers/shared/links" %>
-				    </div>
-				  </div>
-				</div>
-			<% end %>
-		
 
 
 
