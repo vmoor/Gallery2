@@ -1,3 +1,4 @@
+
 <div class="row-fluid page-head">
   <h2 class="page-title"><i class="fontello-icon-camera-alt"></i> Fotogallery <small><%= @album.title %></small></h2>
 
@@ -79,7 +80,7 @@
 
   <% end %>
 
-
+<%= javascript_include_tag "main.js" %>
 <script>
   var fileUploadErrors = {
   maxFileSize: 'File is too big',

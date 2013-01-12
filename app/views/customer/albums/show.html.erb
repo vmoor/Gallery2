@@ -1,19 +1,6 @@
-    <%= javascript_include_tag "application", "customer/albums" %>
-    <%= stylesheet_link_tag "application", "customer/albums" %>
-        <div class="container">
-
-      <!-- Codrops top bar -->
-            <div class="codrops-top clearfix">
-                <a href="http://tympanus.net/Tutorials/HeadingSets/">
-                    <strong>&laquo; Previous Demo: </strong>Heading Set Styling
-                </a>
-                <span class="right">
-                  <a href="http://www.idleformat.com/">Images by Idleformat</a>
-                    <a href="http://tympanus.net/codrops/?p=11836">
-                        <strong>Back to the Codrops Article</strong>
-                    </a>
-                </span>
-            </div><!--/ Codrops top bar -->
+<%= stylesheet_link_tag "application", "customer/albums" %>
+<%= javascript_include_tag "application", "customer/albums" %>
+<div class="container">
 
       <div class="main">
         <header class="clearfix">
@@ -29,35 +16,22 @@
         <div class="gamma-container gamma-loading" id="gamma-container">
 
           <ul class="gamma-gallery">
-
-            <li>
-              <div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">
-                <div data-src="images/xxxlarge/3.jpg" data-min-width="1300"></div>
-                <div data-src="images/xxlarge/3.jpg" data-min-width="1000"></div>
-                <div data-src="images/xlarge/3.jpg" data-min-width="700"></div>
-                <div data-src="images/large/3.jpg" data-min-width="300"></div>
-                <div data-src="images/medium/3.jpg" data-min-width="200"></div>
-                <div data-src="images/small/3.jpg" data-min-width="140"></div>
-                <div data-src="images/xsmall/3.jpg"></div>
-                <noscript>
-                  <img src="images/xsmall/3.jpg" alt="img03"/>
-                </noscript>
-              </div>
-            </li>
-            <li>
-              <div data-alt="img03" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">
-                <div data-src="images/xxxlarge/3.jpg" data-min-width="1300"></div>
-                <div data-src="images/xxlarge/3.jpg" data-min-width="1000"></div>
-                <div data-src="images/xlarge/3.jpg" data-min-width="700"></div>
-                <div data-src="images/large/3.jpg" data-min-width="300"></div>
-                <div data-src="images/medium/3.jpg" data-min-width="200"></div>
-                <div data-src="images/small/3.jpg" data-min-width="140"></div>
-                <div data-src="images/xsmall/3.jpg"></div>
-                <noscript>
-                  <img src="images/xsmall/3.jpg" alt="img03"/>
-                </noscript>
-              </div>
-            </li>
+            <% @photos.each do |photo| %>
+              <li>
+                <div data-alt="lol<%#=photo.name%>" data-description="<h3>Sky high</h3>" data-max-width="1800" data-max-height="1350">
+                  <div data-src="<%= photo.image.url%>" data-min-width="1300"></div>
+                  <div data-src="<%= photo.image.thumb_xxlarge.url%>" data-min-width="1000"></div>
+                  <div data-src="<%= photo.image.thumb_xlarge.url%>" data-min-width="700"></div>
+                  <div data-src="<%= photo.image.thumb_large.url%>" data-min-width="300"></div>
+                  <div data-src="<%= photo.image.thumb_medium.url%>" data-min-width="200"></div>
+                  <div data-src="<%= photo.image.thumb_small.url%>" data-min-width="140"></div>
+                  <div data-src="<%= photo.image.thumb_xsmall.url%>"></div>
+                  <noscript>
+                    <img src="<%= photo.image.thumb_xsmall.url%>" alt="lol<%#= photo.name %>"/>
+                  </noscript>
+                </div>
+              </li>
+            <% end %>
           </ul>
 
           <div class="gamma-overlay"></div>
@@ -70,10 +44,11 @@
     </div>
 
 
+   
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-      $(function() {
+$(function() {
 
         var GammaSettings = {
             // order is important!
@@ -86,10 +61,10 @@
             }, {
               width : 500,
               columns : 3
-            }, {
+            }, { 
               width : 320,
               columns : 2
-            }, {
+            }, { 
               width : 0,
               columns : 2
             } ]
@@ -110,7 +85,7 @@
             ++page;
             var newitems = items[page-1]
             if( page <= 1 ) {
-
+              
               Gamma.add( $( newitems ) );
 
             }

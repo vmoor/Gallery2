@@ -8,7 +8,7 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require jquery.fileupload-ui
+
  *= require lib/bootstrap.css
  *= require lib/bootstrap-responsive.css
  *= require boo-coloring.css
@@ -16,31 +16,25 @@
  *= require boo.css
  *= require docs.css
  *= require icon-fugue.min.css
- *= require photos.css
- *= require customers.css
  *= require_self
 */
 
+/*
+ *= require photos.css
+ *= require customers.css
+ *= require jquery.fileupload-ui
+*/
 
-@import "qtip2/dist/jquery.qtip.min.css";
-@import "select2/select-theme.css";
-@import "select2/select2.css";
 @import "google-code-prettify/prettify.css";
 
-
-@import "bootstrap-timepicker/css/timepicker.css";
 @import "bootstrap-progressbar/css/bootstrap-progressbar.min.css";
-@import "bootstrap-wysihtml5/src/bootstrap-wysihtml5.css";
+
 @import "bootstrap-modal/css/bootstrap-modal-bootheme.css";
 @import "bootstrap-toggle-buttons/css/bootstrap-toggle-buttons-theme.css";
 @import "bootstrap-select/bootstrap-select.css";
 
 
 @import "awesome/css/font-awesome.css";
-
-@import "xbreadcrumbs/xbreadcrumbs.css";
-
-
 @import "fontello/css/fontello.css";
 
 .customer-login-window {

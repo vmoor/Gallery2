@@ -104,7 +104,8 @@
         // SCROLL - NICESCROLL
         // ------------------------------------------------------------------------------------------------ * -->
         // The document page (body)
-        /**/$("html").niceScroll({
+        /**/
+        /*$("html").niceScroll({
 					cursoropacitymin:0.1,
 					cursoropacitymax:0.9,
 					cursorcolor:"#adafb5",
@@ -127,7 +128,7 @@
 					background:"",
 					railoffset:{top:10,left:-1}
 				});
-				/*
+		*/		/*
 				$(".bodyscroll").niceScroll({
 					autohidemode: false,
 					cursoropacitymin:0.9,
@@ -193,7 +194,7 @@
 
         // BREADCRUMBS
         // ------------------------------------------------------------------------------------------------ * -->
-        $('#breadcrumbs').xBreadcrumbs();
+       // $('#breadcrumbs').xBreadcrumbs();
 
         // FORM - BOOTSTRAP SELECTPICKER
         // ------------------------------------------------------------------------------------------------ * -->
@@ -226,7 +227,7 @@
 		// FORM - SELECT 2
         // ------------------------------------------------------------------------------------------------ * -->
         // select2 demo
-		$(".selecttwo").select2({
+	/*	$(".selecttwo").select2({
                 minimumResultsForSearch: 6,
 				width: "off"
         });
@@ -240,9 +241,9 @@
 		$(".selecttwo-full-s").select2({
 				width: "100%"
         });
-
+*/
         // selec2 tagging support demo	
-        $("#customerTag").select2({
+     /*   $("#customerTag").select2({
                 tags: [{
                         'id': 1,
                                 'text': 'Customer'
@@ -265,9 +266,9 @@
                 .on('change', function (event) {
                 console.log(event.val.toString());
         });
-
+*/
         // selec2 tagging support demo	
-        $("#articleTags, #metaArticleKeywords").select2({
+ /*       $("#articleTags, #metaArticleKeywords").select2({
                 tags: [{
                         'id': 1,
                                 'text': 'Design'
@@ -283,8 +284,8 @@
                 }],
                 tokenSeparators: [",", " "]
         });
-
-        var accountGroupData = [{
+*/
+/*        var accountGroupData = [{
                 id: "wholesaler",
                 text: "Wholesaler"
         }, {
@@ -320,18 +321,18 @@
                 placeholder: "Choose or enter group for account...",
                 tokenSeparators: [",", " "]
         });
-
-        // selec2 tagging support demo
+*/
+/*        // selec2 tagging support demo
         $("#taskTags, #taskTagsModal").select2({
                 tags: ["one", "two", "three"],
                 placeholder: "Select or Enter tag"
         });
 
-       
+ */      
 
         // FORM - INPUTMASK PLUGIN
         // ------------------------------------------------------------------------------------------------ * -->
-        $("input.maskDate").inputmask("99/99/9999", {
+/*        $("input.maskDate").inputmask("99/99/9999", {
                 placeholder: "dd/mm/yyyy"
         });
         $("input.maskPhone").inputmask("(999) 999-9999", {
@@ -349,10 +350,10 @@
         $("input.maskPo").inputmask("MM: aaa-999-*****-9999");
         $("input.maskPct").inputmask("99%");
         $("input.maskAcid").inputmask("FP009-99999-2012");
-
+*/
         // FORM - ELASTIC TEXTAREA
         // ------------------------------------------------------------------------------------------------ * -->
-        $('textarea.auto').elastic();
+ //       $('textarea.auto').elastic();
         $('textarea.auto').trigger('update');
 
 
@@ -417,7 +418,7 @@
 
         // BOOTSTRAP DATERANGEPICKER
         // ------------------------------------------------------------------------------------------------ * -->
-        		
+ /*       		
         $('.datepicker-range').daterangepicker();
 
         // bootstrap daterangepicker direction the dropdown expands
@@ -505,17 +506,17 @@
         function (start, end) {
                 $('#reportView').val(start.toString('dd-MM-yyyy') + ' - ' + end.toString('dd-MM-yyyy'));
         });
-
+*/
         // BOOTSTRAP TIMEPICKER
         // ------------------------------------------------------------------------------------------------ * -->
-        $('.timepicker').timepicker({
+/*        $('.timepicker').timepicker({
                 minuteStep: 5,
                 showInputs: false,
         });
-
+*/
         // BOOTSTRAP COLORPICKER
         // ------------------------------------------------------------------------------------------------ * -->
-        $(function () {
+/*        $(function () {
                 $('.colorpicker').colorpicker();
 
                 $('.cpHEX').colorpicker({
@@ -528,9 +529,9 @@
                 $('#cpCHANGE').colorpicker().on('changeColor', function (ev) {
                         divStyle.backgroundColor = ev.color.toHex();
                 });*/
-        });
+/*        });
 
-
+*/
         // BOOTSTRAP BUTTON TOGGLE CHANGE COLOR ON ACTIVE
         // ------------------------------------------------------------------------------------------------ * -->
         $('.btn-group > .btn, .btn[data-toggle="button"]').click(function () {
@@ -557,7 +558,7 @@
 
         // FORM - LIMITER
         // ------------------------------------------------------------------------------------------------ * -->		
-        $(".limiteChar15").counter({
+/*        $(".limiteChar15").counter({
                 goal: 15
         });
         $(".limiteChar140").counter({
@@ -572,7 +573,7 @@
                 goal: 'sky',
                 msg: 'have written'
         });
-
+*/
         // FORM - CLEAR FIELD
         // ------------------------------------------------------------------------------------------------ * -->
         $.fn.clearicon = function (options) {
@@ -646,7 +647,7 @@
 
         // GTIP - TOOLTIP
         // ------------------------------------------------------------------------------------------------ * -->
-        var shared = {
+/*        var shared = {
                 position: {
                         viewport: $(window)
                 },
@@ -728,7 +729,7 @@
                         at: 'left bottom'
                 }
         }));
-
+*/
         // BOOTSTRAP POPOVER
         // ------------------------------------------------------------------------------------------------ * -->
         // popover demo
@@ -765,7 +766,7 @@
         // SPARKLINE 
         // ------------------------------------------------------------------------------------------------ * -->
         // Change class for tooltip 
-		$.fn.sparkline.defaults.common.tooltipClassname = 'sparktip';
+//		$.fn.sparkline.defaults.common.tooltipClassname = 'sparktip';
 		
 
         // Bootstrap Hack for button radio to hidden input 
